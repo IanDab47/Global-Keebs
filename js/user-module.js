@@ -1,20 +1,38 @@
-class Buyer {
-  constructor(name, itemsBuying) {
+class User {
+  static quantity
+
+  constructor(name) {
+    this.name = name
+    User.quantity++
   }
 }
 
-class Seller {
-  constructor() {
+class Buyer extends User {
+  constructor(name, has, wants) {
+    super(name)
+    this.has = has
+    this.wants = wants
   }
 }
 
-class Market {
-  constructor() {
+class Seller extends User {
+  constructor(name, has, wants) {
+    super(name)
+    this.has = has
+    this.wants = wants
   }
 }
 
-module.exports = (
-  { Buyer: Buyer },
-  { Seller: Seller },
-  { Market: Market }
-)
+class Market extends User {
+  constructor(name, has) {
+    super(name)
+    this.has = has
+  }
+}
+
+module.exports = {
+  User: User,
+  Buyer: Buyer,
+  Seller: Seller,
+  Market: Market
+}

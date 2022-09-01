@@ -33,7 +33,7 @@ class Switches extends Product {
 class Keycaps extends Product {
   static quantity = 0
 
-  constructor(model, price, make, profile, quality, kit) {
+  constructor(model, price, make, profile, kit, quality) {
     super(model, price, make)
     this.profile = profile || ''
     this.quality = quality || ''
@@ -41,6 +41,7 @@ class Keycaps extends Product {
     Keycaps.quantity++
   }
 }
+
 module.exports = {
   Product: Product,
   Keyboard: Keyboard,
