@@ -1,5 +1,5 @@
 class Product {
-  constructor(model, price, make) {
+  constructor(owner, model, price, make) {
     this.model = model
     this.price = price
     this.make = make || ''
