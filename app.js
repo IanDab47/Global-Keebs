@@ -34,10 +34,9 @@ const swagkeys = new user.Market('swagkeys', 'Shelby80')
 
 // IMPORTANT URLS
 const redditAPI = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.REDDIT_SECRET_KEY}&response_type=TYPE&state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING`
-const mmURL = `https://www.reddit.com/r/mechmarket/.json`
 
 app.get('/', (req, res) => {
-  
+  listings = functions.checkListings()
   res.render('index', { 
     webpage: 'Home',
   })
@@ -45,12 +44,7 @@ app.get('/', (req, res) => {
 
 app.get('/Keyboards', (req, res) => {
   let listings = []
-  axios.get(mmURL)
-    .then(response => {
-      listings = response.data.data.children.map(listing => listing.data)
-      console.log(listings)
-    })
-    .catch(console.warn)
+  
   res.render('products', { webpage: 'Keyboards' })
 })
 
