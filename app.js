@@ -10,6 +10,7 @@ const HOST = process.env.HOST
 const PORT = process.env.PORT
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+app.use(express.static('public'))
 
 // Required functions for webpage operations
 const functions = require('./public/js/functions')
@@ -36,14 +37,14 @@ const swagkeys = new user.Market('swagkeys', 'Shelby80')
 const redditAPI = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.REDDIT_SECRET_KEY}&response_type=TYPE&state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING`
 
 app.get('/', (req, res) => {
-  listings = functions.checkListings()
+  // const listings = functions.checkListings()
+  functions.checkListings()
   res.render('index', { 
     webpage: 'Home',
   })
 })
 
 app.get('/Keyboards', (req, res) => {
-  let listings = []
   
   res.render('products', { webpage: 'Keyboards' })
 })
@@ -70,5 +71,5 @@ app.get('/users', (req, res) => {
 
 // listen on port #----
 app.listen(PORT, HOST, () => {
-  console.log(`${HOST} is listening on port ${PORT}`)
+  console.log(`${HOST} has entered financial discomfort in port ${PORT}`)
 })

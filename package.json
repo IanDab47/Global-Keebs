@@ -5,5 +5,24 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-ejs-layouts": "^2.5.1"
-  }
+  },
+  "name": "p2-project-folder",
+  "description": "The all-in-one app to view the current keyboard listings on the web. This app takes the listings from r/mechmarket and compacts them into an orgainzed and clean browsing experience, separating products by category and displaying all the details in a neat and intuitive way. This resolves the tedious task of searching and scrolling for each item by post, saving you time from going through multiple links for an image or seeing if a product is being sold at all.",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IanDab47/Global-Keebs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IanDab47/Global-Keebs/issues"
+  },
+  "homepage": "https://github.com/IanDab47/Global-Keebs#readme"
 }
