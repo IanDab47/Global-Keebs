@@ -58,7 +58,7 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 | DELETE | /:username/favorites | D      | remove listing from favorites |
 
 ### ERD
-![Base ERD](https://i.imgur.com/K9IaAWC.png "Base ERD")
+![Base ERD](https://i.imgur.com/McOCj0X.png "Base ERD")
 
 ### MVP Goals
 - Site collects newest /r/mechmarket listisngs to display
