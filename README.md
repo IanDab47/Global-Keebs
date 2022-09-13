@@ -1,3 +1,35 @@
 # GLOBAL KEEBS
-The all-in-one app to view the current keyboard listings on the web. This app takes the listings from r/mechmarket and compacts them into an orgainzed and clean browsing experience, separating products by category and displaying all the details in a neat and intuitive way. This resolves the tedious task of searching and scrolling for each item by post, saving you time from going through multiple links for an image or seeing if a product is being sold at all.
+The all-in-one app to view the current keyboard listings on the web. This app takes the listings from r/mechmarket and compacts them into an orgainzed and clean browsing experience, separating listings by flair type and displaying all the details in a neat and intuitive way.
 
+[img]
+
+Using the Reddit API, you can link your account to reddit and save your favorite listings as well as comment on them through the site. You can even make your own posts without needing to worry about meeting the requirements.
+
+[img]
+
+## Tech Stack
+- HTML5
+- Vanilla CSS
+- Node.js
+- Postgres
+
+## Packages
+- axios
+- bcrypt
+- crypto
+- dotenv
+- ejs
+- express
+- express-js-layouts
+- morgan
+- pg
+- sequelize
+
+### MVP Goals
+- Site collects newest /r/mechmarket listisngs to display
+- Create Listing model to store listings
+- Display all listings by flair type
+- Display Timestamp (or default images) on homepage
+- Use Reddit API to save, comment, and make posts
+
+### Stretch Goals
