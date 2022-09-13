@@ -68,6 +68,7 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 - Display Timestamp (or default images) on homepage
 - Login to site using Reddit account with Reddit API 
 - Use Reddit API to save, comment, and make posts
+- Make mobile Friendly
 
 ### Stretch Goals
 - Create Product model to store items being sold or sought
