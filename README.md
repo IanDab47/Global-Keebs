@@ -27,6 +27,36 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 - pg
 - sequelize
 
+### RESTful Charts
+##### Users
+| HTTP   | URL                | CRUD   | Action               |
+| ---    | ---                | :----: | ---                  |
+| POST   | /                  | C      | Submit app review    |
+| GET    | /:username/        | R      | Display user details |
+| PUT    | /:username/review  | U      | Edit app review      |
+| DELETE | /:username/        | D      | Logout of user       |
+| PUT    | /:username/review  | U      | Delete app review    |
+
+##### Listings
+| HTTP   | URL         | CRUD   | Action                          |
+| :---   | :---        | :----: | :---                            |
+| POST   | /:listingId | C      | make comment on actual listing  |
+| GET    | /Selling    | R      | display selling listings        |
+| GET    | /Buying     | R      | display buying listings         |
+| GET    | /Stores     | R      | display store listings          |
+| GET    | /GBIC       | R      | display GB/IC listings          |
+| GET    | /:listingId | R      | display listings details        |
+| PUT    | /:listingId | U      | edit personal comment           |
+| DELETE | /:listingId | D      | delete personal comment         |
+
+##### Favorites
+| HTTP   | URL                  | CRUD   | Action                        |
+| ---    | ---                  | :----: | ---                           |
+| POST   | /:listingId          | C      | add listing to favorites      |
+| GET    | /:username/favorites | R      | view all favorite listings    |
+| DELETE | /:listingId          | D      | remove listing from favorites |
+| DELETE | /:username/favorites | D      | remove listing from favorites |
+
 ### ERD
 ![Base ERD](https://i.imgur.com/K9IaAWC.png "Base ERD")
 
