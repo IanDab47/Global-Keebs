@@ -4,8 +4,9 @@
 <%- include('./partials/head.ejs') %>
 
 <body>
-  
-  <%- include('./partials/nav.ejs') %>
+  <% if(webpage !== 'Login' || webpage !== 'Sign-Up') { %>
+    <%- include('./partials/nav.ejs') %>
+  <% } %>
 
   <%- body %>
 

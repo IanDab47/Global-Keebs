@@ -53,14 +53,7 @@ app.get('/', async (req, res) => {
 })
 
 app.use('/listings', require('./controllers/listings'))
-
-app.get('/login', (req, res) => {
-  res.render('user/login', { webpage: 'Login' })
-})
-
-app.get('/signup', (req, res) => {
-  res.render('user/signup', { webpage: 'Sign-Up' })
-})
+app.use('/user', require('./controllers/user'))
 
 // listen on port #----
 app.listen(PORT, HOST, () => {

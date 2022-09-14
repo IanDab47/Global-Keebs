@@ -95,7 +95,7 @@ const addListings = async (url) => {
     .then(response => {
       response.data.data.children.map((listing, index) => {
         // Add listings to array
-        listings.push(listing.data)
+        // listings.push(listing.data)
 
         const newListing = createListing(listing)
 
@@ -117,9 +117,12 @@ const addListings = async (url) => {
             url = `https://www.reddit.com/r/mechmarket/new/.json?after=${after}`
   
             // Recursively append listings
-            console.log(response.data.data.after, listings.length)
+            // console.log(response.data.data.after, listings.length)
             return addListings(url)
           }
+        } else {
+          console.log('done!')
+          return
         }
       })
     })
