@@ -5,6 +5,7 @@ const express = require('express')
 const ejsLayouts = require('express-ejs-layouts')
 const cookieParser = require('cookie-parser')
 const crypto = require('crypto-js')
+const bcrypt = require('bcrypt')
 const db = require('./models')
 
 // Express variables go here
@@ -17,6 +18,7 @@ app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
 
 // Required functions for webpage operations
 const functions = require('./public/js/functions')
@@ -52,8 +54,8 @@ app.get('/', async (req, res) => {
   })
 })
 
-app.use('/listings', require('./controllers/listings'))
 app.use('/user', require('./controllers/user'))
+app.use('/listings', require('./controllers/listings'))
 
 // listen on port #----
 app.listen(PORT, HOST, () => {

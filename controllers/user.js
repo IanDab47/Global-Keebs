@@ -1,5 +1,8 @@
+require('dotenv').config()
 const express = require('express')
 const router = express.Router()
+const crypto = require('crypto-js')
+const bcrypt = require('bcrypt')
 const db = require('../models')
 
 router.get('/', (req, res) => {
