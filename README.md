@@ -45,10 +45,9 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 | HTTP   | URL         | CRUD   | Action                          |
 | :---   | :---        | :----: | :---                            |
 | POST   | /:listingId | C      | make comment on actual listing  |
-| GET    | /Selling    | R      | display selling listings        |
-| GET    | /Buying     | R      | display buying listings         |
-| GET    | /Stores     | R      | display store listings          |
-| GET    | /GBIC       | R      | display GB/IC listings          |
+| GET    | /selling    | R      | display selling listings        |
+| GET    | /buying     | R      | display buying listings         |
+| GET    | /stores     | R      | display store listings          |
 | GET    | /:listingId | R      | display listings details        |
 | PUT    | /:listingId | U      | edit comment                    |
 | DELETE | /:listingId | D      | delete comment                  |
