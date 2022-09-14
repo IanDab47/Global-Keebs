@@ -1,0 +1,21 @@
+// TIME
+created_utc - time of post creation in unix
+
+// URLS
+url - direct link to /r/mm listing
+id - page id of /r/mm listing
+name - page reference of listing for urls
+author_fullname - page reference of user for urls
+
+// REDDIT
+author - username of OP
+
+// TEXT
+title - complete text and formatting of listing title
+selftext - complete text and formatting of listing body
+link_flair_text - text of listing type
+
+// SCORE
+upvote_ratio - ratio of upvotes to downvotes by percentage (0--1) 
+downs - downvotes for listing
+ups - upvotes for listing

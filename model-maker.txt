@@ -1,0 +1,19 @@
+USERS
+------------
+sequelize model:create --name user --attributes username:string,email:string,password:string
+
+COMMENTS
+------------
+sequelize model:create --name comment --attributes comment:string,listingId:integer
+
+LISTINGS
+------------
+sequelize model:create --name listing --attributes author:string,author_ref:string,created_utc:integer,downs:integer,flair_text:string,location:string,page_id:string,page_name:string,self_text:string,timestamp:string,title:string,ups:integer,upvote_ratio:float,url:string
+
+FAVORITES
+------------
+sequelize model:create --name users_listings --attributes listingId:integer,userId:integer
+
+comments_listings
+------------
+sequelize model:create --name comments_listings --attributes listingId:integer,commentId:integer

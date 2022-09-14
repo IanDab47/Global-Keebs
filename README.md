@@ -39,6 +39,7 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 | HTTP   | URL                | CRUD   | Action               |
 | ---    | ---                | :----: | ---                  |
 | GET    | /:username         | R      | Display user details |
+| PUT    | /:username         | U      | Update user details  |
 | DELETE | /:username         | D      | Logout of user       |
 
 ##### Listings
@@ -69,11 +70,13 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 - Display all listings by flair type
 - Search for listings that include search query in title or post text
 - Display Timestamp (or default images) on homepage
-- Login to site using Reddit account with Reddit API 
-- Use Reddit API to save, comment, and make posts
+- Login to site using created account credentials
+- Save, comment, and make posts
 - Make mobile Friendly
 
 ### Stretch Goals
+- Implement Reddit API to login with reddit account and post comments/messages/listings to Reddit
+- Implement Imgur API to generate thumbnails for listings
 - Create Product model to store items being sold or sought
 - Categorize and (properly) search for items by type (i.e keyboard, keycaps, desk pad, etc.)
 - Save items on account

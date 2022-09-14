@@ -1,7 +1,7 @@
 class User {
   static quantity
 
-  constructor(name, items) {
+  constructor(name) {
     this.name = name
     this.items = 0
     User.quantity++
@@ -29,16 +29,13 @@ class Seller extends User {
     }
   }
 
-  addItems() {
-    this.has.forEach(item => {
-      this.items++
-    })
+  setItemCount() {
+    this.items = this.has.length
   }
 
   soldItem(item) {
-    let filteredItems = []
     this.has = this.has.filter(hasItem => hasItem !== item)
-    this.items--
+    this.setItemCount()
     this.negCheck()
   }
 

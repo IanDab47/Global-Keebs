@@ -19,26 +19,18 @@ const functions = require('./public/js/functions')
 const user = require('./public/js/user-module')
 const product = require('./public/js/product-module')
 
-// TEST PRODUCTS
-const shelby80 = new product.Keyboard('Shelby80', 'tkl', 'E-White', 349, 'Swagkeys', 'hotswap pcb, fr4 plate, daugther board')
-const bobaU4T = new product.Switches('BobaU4T', '90', 110, 'Gazzew', true, true)
-const dots = new product.Keycaps('Dots', 220, 'GMK', 'Cherry', 'base', 'sealed')
-// console.log(shelby80, bobaU4T, dots)
-// console.log(product.Keyboard.quantity, product.Switches.quantity, product.Keycaps.quantity)
-
-// TEST USERS
-const mark = new user.Buyer('mark', 'BobaU4T', 'Dots')
-const dave = new user.Seller('dave', 'Dots', 'BobaU4T')
-const swagkeys = new user.Market('swagkeys', 'Shelby80')
-// console.log(shelby80, bobaU4T, dots)
-// console.log(product.Keyboard.quantity, product.Switches.quantity, product.Keycaps.quantity)
-
 // IMPORTANT URLS
 const redditAPI = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.REDDIT_SECRET_KEY}&response_type=TYPE&state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING`
+const imgurTest = 'https://api.imgur.com/3/image/i1GAmMC.json'
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   // const listings = functions.checkListings()
-  functions.checkListings()
+  // functions.checkListings()
+  await axios.get(imgurTest)
+    .then(response => {
+      console.log(response.data.validateStatus)
+    })
+    .catch(console.warn)
   res.render('index', { 
     webpage: 'Home',
   })
@@ -46,15 +38,15 @@ app.get('/', (req, res) => {
 
 app.get('/Keyboards', (req, res) => {
   
-  res.render('products', { webpage: 'Keyboards' })
+  res.render('listings', { webpage: 'Sellers' })
 })
 
 app.get('/Switches', (req, res) => {
-  res.render('products', { webpage: 'Switches' })
+  res.render('listings', { webpage: 'Buyers' })
 })
 
 app.get('/Keycaps', (req, res) => {
-  res.render('products', { webpage: 'Keycaps' })
+  res.render('listings', { webpage: 'Stores' })
 })
 
 app.get('/Login', (req, res) => {
