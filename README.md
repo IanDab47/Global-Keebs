@@ -32,10 +32,10 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 | HTTP   | URL                | CRUD   | Action               |
 | ---    | ---                | :----: | ---                  |
 | POST   | /                  | C      | Submit app review    |
-| GET    | /:username/        | R      | Display user details |
+| GET    | /:username         | R      | Display user details |
 | PUT    | /:username/review  | U      | Edit app review      |
-| DELETE | /:username/        | D      | Logout of user       |
-| PUT    | /:username/review  | U      | Delete app review    |
+| DELETE | /:username/review  | U      | Delete app review    |
+| DELETE | /:username         | D      | Logout of user       |
 
 ##### Listings
 | HTTP   | URL         | CRUD   | Action                          |
@@ -58,7 +58,7 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 | DELETE | /:username/favorites | D      | remove listing from favorites |
 
 ### ERD
-![Base ERD](https://i.imgur.com/McOCj0X.png "Base ERD")
+![Base ERD](https://i.imgur.com/fHtLtTh.png "Base ERD")
 
 ### MVP Goals
 - Site collects newest /r/mechmarket listisngs to display
