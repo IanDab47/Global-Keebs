@@ -33,13 +33,13 @@ module.exports = {
         type: Sequelize.STRING
       },
       self_text: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       timestamp: {
         type: Sequelize.STRING
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       ups: {
         type: Sequelize.INTEGER

@@ -25,11 +25,11 @@ const imgurTest = 'https://api.imgur.com/3/image/i1GAmMC.json'
 
 app.get('/', async (req, res) => {
   // const listings = functions.checkListings()
-  // functions.checkListings()
-  await axios.get(imgurTest)
-    .then(response => {
-      console.log(response.data.validateStatus)
-    })
+  await functions.checkListings()
+  // await axios.get(imgurTest)
+  //   .then(response => {
+  //     console.log(response.data.validateStatus)
+  //   })
     .catch(console.warn)
   res.render('index', { 
     webpage: 'Home',

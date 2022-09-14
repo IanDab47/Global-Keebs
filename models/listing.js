@@ -24,9 +24,9 @@ module.exports = (sequelize, DataTypes) => {
     location: DataTypes.STRING,
     page_id: DataTypes.STRING,
     page_name: DataTypes.STRING,
-    self_text: DataTypes.STRING,
+    self_text: DataTypes.TEXT,
     timestamp: DataTypes.STRING,
-    title: DataTypes.STRING,
+    title: DataTypes.TEXT,
     ups: DataTypes.INTEGER,
     upvote_ratio: DataTypes.FLOAT,
     url: DataTypes.STRING
