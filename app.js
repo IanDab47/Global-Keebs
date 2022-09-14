@@ -3,25 +3,43 @@ require('dotenv').config()
 const axios = require('axios')
 const express = require('express')
 const ejsLayouts = require('express-ejs-layouts')
+const cookieParser = require('cookie-parser')
+const crypto = require('crypto-js')
+const db = require('./models')
 
 // Express variables go here
 const app = express()
 const HOST = process.env.HOST
 const PORT = process.env.PORT
+
+// Express middleware go here
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: false }))
 
 // Required functions for webpage operations
 const functions = require('./public/js/functions')
 
-// Modules for users and products
-const user = require('./public/js/user-module')
-const product = require('./public/js/product-module')
-
 // IMPORTANT URLS
-const redditAPI = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.REDDIT_SECRET_KEY}&response_type=TYPE&state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING`
-const imgurTest = 'https://api.imgur.com/3/image/i1GAmMC.json'
+// const redditAPI = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.REDDIT_SECRET_KEY}&response_type=TYPE&state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING`
+// const imgurTest = 'https://api.imgur.com/3/image/i1GAmMC.json'
+
+// Check user authentication
+app.use(async (req, res, next) => {
+  if (req.cookies.userId) {
+    const decryptedId = crypto.AES.decrypt(req.cookies.userId.toString(), process.env.ENC_SECRET)
+    const decryptedIdString = decryptedId.toString(crypto.enc.Utf8)
+    
+    const user = await db.user.findByPk(decryptedIdString)
+
+    res.locals.user = user
+  } else {
+    res.locals.user = null
+  }
+
+  next()
+})
 
 app.get('/', async (req, res) => {
   const message = req.query.message || null
@@ -34,8 +52,14 @@ app.get('/', async (req, res) => {
   })
 })
 
-app.get('/Login', (req, res) => {
-  res.render('login', { webpage: 'Login' })
+app.use('/listings', require('./controllers/listings'))
+
+app.get('/login', (req, res) => {
+  res.render('user/login', { webpage: 'Login' })
+})
+
+app.get('/signup', (req, res) => {
+  res.render('user/signup', { webpage: 'Sign-Up' })
 })
 
 // listen on port #----
