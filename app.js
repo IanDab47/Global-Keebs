@@ -24,41 +24,18 @@ const redditAPI = `https://www.reddit.com/api/v1/authorize?client_id=${process.e
 const imgurTest = 'https://api.imgur.com/3/image/i1GAmMC.json'
 
 app.get('/', async (req, res) => {
+  const message = req.query.message || null
   // const listings = functions.checkListings()
   await functions.checkListings()
-  // await axios.get(imgurTest)
-  //   .then(response => {
-  //     console.log(response.data.validateStatus)
-  //   })
-    .catch(console.warn)
+
   res.render('index', { 
     webpage: 'Home',
+    message: message
   })
-})
-
-app.get('/Keyboards', (req, res) => {
-  
-  res.render('listings', { webpage: 'Sellers' })
-})
-
-app.get('/Switches', (req, res) => {
-  res.render('listings', { webpage: 'Buyers' })
-})
-
-app.get('/Keycaps', (req, res) => {
-  res.render('listings', { webpage: 'Stores' })
 })
 
 app.get('/Login', (req, res) => {
   res.render('login', { webpage: 'Login' })
-})
-
-app.get('/products', (req, res) => {
-  res.send({ shelby80, bobaU4T, dots })
-})
-
-app.get('/users', (req, res) => {
-  res.send({ mark, dave, swagkeys })
 })
 
 // listen on port #----
