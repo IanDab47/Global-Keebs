@@ -8,6 +8,18 @@
     <%- include('./partials/nav.ejs') %>
   <% } %>
 
+  <% if(errorMsg) { %>
+    <div class="error-container">
+      <p><%= errorMsg %></p>
+    </div>
+  <% } %>
+
+  <% if(message) { %>
+    <div class="message-container">
+      <p><%= message %></p>
+    </div>
+  <% } %>
+
   <%- body %>
 
 </body>

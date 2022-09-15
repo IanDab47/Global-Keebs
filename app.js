@@ -44,14 +44,20 @@ app.use(async (req, res, next) => {
 })
 
 app.get('/', async (req, res) => {
-  const message = req.query.message || null
-  // const listings = functions.checkListings()
-  await functions.checkListings()
+  try {
+    const error = req.query.error || null
+    const message = req.query.message || null
+    // const listings = functions.checkListings()
+    await functions.checkListings()
+  
+    res.render('index', { 
+      webpage: 'Home',
+      errorMsg: error,
+      message: message
+    })
+  } catch(err) {
 
-  res.render('index', { 
-    webpage: 'Home',
-    message: message
-  })
+  }
 })
 
 app.use('/user', require('./controllers/user'))

@@ -24,7 +24,7 @@
 }
 
 body {
-  height: 200vh;
+  min-height: 100vh;
   background: linear-gradient(
     -45deg,
     var(--bg-lig-1),
@@ -32,6 +32,10 @@ body {
   );
   overflow: overlay;
 }
+/* 
+body :not(.nav-container *) {
+  margin: 0 20px;
+} */
 
 a {
   color: currentColor;
@@ -129,6 +133,19 @@ a {
 .nav-text {
   display: inline;
   padding-right: 3px;
+}
+
+.error-container {
+  width: 100vw; height: 2em;
+  background: #d62828;
+  color: #EEE;
+}
+
+/* LISTINGS */
+.listing-display-container {
+  background: ;
+  padding-bottom: 20px;
+  margin-left: 40px;
 }
 
 @media (min-width: 2560px) {

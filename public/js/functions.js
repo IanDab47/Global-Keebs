@@ -30,7 +30,7 @@ const createListing = async (listing) => {
   const author_ref = listing.author_fullname
   const created_utc = listing.created_utc
   const downs = listing.downs
-  const flair_text = listing.link_flair_text.toUpperCase()
+  const flair_text = listing.link_flair_text.toUpperCase() || 'N/A'
   const page_id = listing.id || null
   const page_name = listing.name
   const self_text = listing.selftext
