@@ -48,6 +48,7 @@ router.get('/:page_id', async (req, res) => {
         page_id: req.params.page_id
       }
     })
+    console.log(listing)
     res.render('listings/show', {
       webpage: null,
       message: null,

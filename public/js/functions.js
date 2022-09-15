@@ -25,6 +25,7 @@ const ageCheck = (timestamp) => {
 }
 
 const createListing = async (listing) => {
+
   // grab immediate values
   const author = listing.author
   const author_ref = listing.author_fullname
@@ -39,16 +40,18 @@ const createListing = async (listing) => {
   const upvote_ratio = listing.upvote_ratio
   const url = listing.url
 
+  console.log(flair_text)
+
   // grab first bracket for location
-  const re_local = /\[([^]]+)\]/
+  const re_local = /\[([^\]]+)\]/
   let location = ''
   const titleText = re_local.exec(title) || ['ha', null ]
   titleText[1] ? location = titleText[1] : location = 'N/A'
 
   // grab first link and filter for imgur link
-  const re_imgur = /\(([^)]+)\)/
+  const re_imgur = /\(([^)]+)\)/g
   let timestamp = ''
-  const listingText = re_imgur.exec(listing.selftext) || ['ha', 'no timestamp']
+  const listingText = re_imgur.match(listing.selftext) || ['ha', 'no timestamp']
   listingText[1].includes('imgur') ? timestamp = listingText[1] : timestamp = 'no timestamp'
 
   const [newListing, created] = await db.listing.findOrCreate({
@@ -92,13 +95,13 @@ const addListings = async (url) => {
   // retrieve listing data
   let allListings = await axios.get(url)
     .then(response => {
-      response.data.data.children.map((listing, index) => {
+      response.data.data.children.map( async (listing, index) => {
         // let newListing = null
         // Add listings to array
         listings.push(listing.data)
-        // if(listing.data && listing.data.link_flair_text) {
-        //   newListing = createListing(listing)
-        // }
+        if(listing.data.link_flair_text !== null || listing.data.link_flair_text !== undefined) {
+          await createListing(listing.data)
+        }
 
         // if(newListing) {
           // check for final possible listing
@@ -106,12 +109,13 @@ const addListings = async (url) => {
           // if(index === response.data.data.dist - 1) {
             console.log('done!')
   
-            listings = filterListings(listings)
-            console.log('filtered!')
+            // listings = filterListings(listings)
+            // console.log('filtered!')
   
-            listings.map((listing, index) => {
-              listings[index] = createListing(listing)
-            })
+            // listings.map((listing, index) => {
+            //   listings[index] = createListing(listing)
+            // })
+            return
           } else if (index === response.data.data.dist - 1) { // Checks for end of page
             // Update url to load next page
             after = response.data.data.after
@@ -119,7 +123,7 @@ const addListings = async (url) => {
   
             // Recursively append listings
             // console.log(response.data.data.after, listings.length)
-            return addListings(url)
+            return await addListings(url)
           }
         // }
       })
