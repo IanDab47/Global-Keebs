@@ -136,14 +136,22 @@ const addListings = async (url) => {
           // let newListing = null
           // Add listings to array
           listings.push(listing.data)
-          if(listing.data.link_flair_text !== null || listing.data.link_flair_text !== undefined) {
-            newListing = await createListing(listing.data)
-          }
-          if(newListing) {
+          // if(listing.data.link_flair_text !== null || listing.data.link_flair_text !== undefined) {
+          //   newListing = await createListing(listing.data)
+          // }
+          // if(newListing) {
             // check for final possible listing
             if(index === response.data.data.dist - 1 && response.data.data.after === null || listings.length === 1000) {
             // if(index === response.data.data.dist - 1) {
               console.log('done!')
+
+              listings = filterListings(listings)
+              console.log('filtered')
+
+              listings.map(listing => {
+                createListing(listing)
+              })
+
               return
             } else if (index === response.data.data.dist - 1) { // Checks for end of page
               // Update url to load next page
@@ -151,10 +159,10 @@ const addListings = async (url) => {
               url = `https://www.reddit.com/r/mechmarket/new/.json?after=${after}`
     
               // Recursively append listings
-              // console.log(response.data.data.after, listings.length)
+              console.log(response.data.data.after, listings.length)
               return await addListings(url)
             }
-          }
+          // }
         } catch(err) {
 
         }

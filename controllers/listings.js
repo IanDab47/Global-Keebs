@@ -30,7 +30,8 @@ router.get('/', async (req, res) => {
         listings = await db.listing.findAll({
           where: {
             flair_text: filterType.toUpperCase()
-          }
+          },
+          order: sequelize.col('location')
         })
       } else {
         listings = await db.listing.findAll()

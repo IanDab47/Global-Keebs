@@ -165,9 +165,14 @@ a {
 
 /* LISTINGS */
 .listing-display-container {
-  background: rgb(60 60 60 / .2);
+  display: flex;
+  align-content: end;
+  background: rgb(80 80 60 / .1);
+  border-radius: 0 12px 0 12px;
+  padding: 10px;
   padding-bottom: 20px;
-  margin-left: 40px;
+  margin: 0 40px;
+  margin-bottom: 6px;
 }
 
 @keyframes drop-down-message {

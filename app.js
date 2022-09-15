@@ -56,7 +56,7 @@ app.get('/', async (req, res) => {
       message: message
     })
   } catch(err) {
-
+    console.log(err)
   }
 })
 
