@@ -1,4 +1,5 @@
 const express = require('express')
+const { sequelize } = require('../models')
 const router = express.Router()
 const db = require('../models')
 
@@ -9,6 +10,8 @@ router.get('/', async (req, res) => {
     const errorMsg = req.query.error || null
     const filterType = req.query.filter || null
     const trueType = typeArr.filter(type => filterType === type)
+
+    console.log(filterType)
   
     // Check for bad filter type
     if(filterType !== null && !trueType) {
@@ -22,12 +25,16 @@ router.get('/', async (req, res) => {
 
       // Default here because everything else works (I think)
     } else {
-      const listings = await db.listing.findAll({
-        where: {
-          flair_text: filterType.toUpperCase()
-        },
-        order: ['created_utc', 'ASC']
-      })
+      let listings = null
+      if(filterType) {
+        listings = await db.listing.findAll({
+          where: {
+            flair_text: filterType.toUpperCase()
+          }
+        })
+      } else {
+        listings = await db.listing.findAll()
+      }
       // console.log(listings)
       res.render('listings/list', { 
         webpage: 'listings',
@@ -37,6 +44,7 @@ router.get('/', async (req, res) => {
       })
     }
   } catch(err) {
+    console.log(err)
     const errorMsg = 'Something went wrong. Returning back here for safety'
     res.redirect(`/?error=${errorMsg}`)
   }

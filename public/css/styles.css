@@ -142,7 +142,9 @@ a {
   align-items: center; justify-content: center;
   width: 100vw; height: 2.5em;
   background: #d62828;
+  /* font-weight: 600; */
   color: #EEE;
+  user-select: none;
   z-index: -1;
 
   animation-name: drop-down-message;
@@ -150,14 +152,15 @@ a {
   animation-duration: 1.2s;
 }
 
-.error-container > p::after {
-  content: 'X';
-  position: absolute;
-  margin-left: 12vw;
+.error-container:hover {
+  cursor: pointer;
 }
 
-.error-container > p::after:hover {
-  cursor: pointer;
+.error-container > p::after {
+  content: 'X';
+  font-size: 1.2em; font-weight: 300;
+  position: absolute;
+  margin-left: 8vw;
 }
 
 /* LISTINGS */
