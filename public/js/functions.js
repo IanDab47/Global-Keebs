@@ -25,15 +25,34 @@ const ageCheck = (timestamp) => {
 }
 
 const filterSelfText = (self_text) => {
+
   // Remove 1st set of brackets and its contents 
   const re_brackets = /\[([^\]]+)\]/
-  const re_paren = /\(([^)]+)\)/g
   self_text = self_text.replace(re_brackets, "")
-  console.log(self_text)
+
+  // Remove all parenthesis with links
+  const re_paren = /\(([^)]+)\)/g
+  const parenTextArr = self_text.match(re_paren)
+  if(parenTextArr) {
+    parenTextArr.forEach(text => {
+      if(text.includes('http')) {
+        const re_link = /`${text}`/
+        self_text = self_text.replace(re_link, "")
+        // console.log(text)
+      }
+    })
+    console.log(parenTextArr)
+  }
+  console.log('------------ ALL LISITNG --------------')
+
+  // console.log(self_text)
+  console.log('------------ NEW LISITNG --------------')
 }
 
 const createListing = async (listing) => {
   try {
+    // console.log(listing)
+
     // grab immediate values
     const author = listing.author
     const author_ref = listing.author_fullname
@@ -42,11 +61,15 @@ const createListing = async (listing) => {
     const flair_text = listing.link_flair_text.toUpperCase() || 'N/A'
     const page_id = listing.id || null
     const page_name = listing.name
-    const self_text = listing.selftext
     const title = listing.title
     const ups = listing.ups
     const upvote_ratio = listing.upvote_ratio
     const url = listing.url
+    
+    // Replace all '\n' with <br>
+    const re_newLine = /\\n/g
+    // console.log(listing.selftext.match(re_newLine))
+    const self_text = listing.selftext.replace(re_newLine, "<br>")
   
     // grab first bracket for location
     const re_local = /\[([^\]]+)\]/
@@ -59,8 +82,8 @@ const createListing = async (listing) => {
     let timestamp = ''
     const listingText = self_text.match(re_imgur) || ['ha', 'no timestamp']
     // console.log(listingText)
-    filterSelfText(self_text)
-    console.log('------ NEW LISTING ------')
+    // filterSelfText(self_text)
+    // console.log('------ NEW LISTING ------')
     // listingText[1].includes('imgur') ? timestamp = listingText[1] : timestamp = 'no timestamp'
   
     // Find or create new model with necessary listing data

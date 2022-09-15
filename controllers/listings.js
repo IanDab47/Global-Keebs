@@ -25,7 +25,8 @@ router.get('/', async (req, res) => {
       const listings = await db.listing.findAll({
         where: {
           flair_text: filterType.toUpperCase()
-        }
+        },
+        order: ['created_utc', 'ASC']
       })
       // console.log(listings)
       res.render('listings/list', { 

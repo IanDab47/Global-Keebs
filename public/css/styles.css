@@ -68,6 +68,7 @@ a {
 }
 
 .nav-container {
+  /* position: relative; */
   display: flex;
   justify-content: space-between;
   overflow: hidden;
@@ -136,16 +137,39 @@ a {
 }
 
 .error-container {
-  width: 100vw; height: 2em;
+  position: relative;
+  display: flex;
+  align-items: center; justify-content: center;
+  width: 100vw; height: 2.5em;
   background: #d62828;
   color: #EEE;
+  z-index: -1;
+
+  animation-name: drop-down-message;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-duration: 1.2s;
+}
+
+.error-container > p::after {
+  content: 'X';
+  position: absolute;
+  margin-left: 12vw;
+}
+
+.error-container > p::after:hover {
+  cursor: pointer;
 }
 
 /* LISTINGS */
 .listing-display-container {
-  background: ;
+  background: rgb(60 60 60 / .2);
   padding-bottom: 20px;
   margin-left: 40px;
+}
+
+@keyframes drop-down-message {
+  from {transform: translateY(-3em);}
+  to {transform: translateY(0);}
 }
 
 @media (min-width: 2560px) {
