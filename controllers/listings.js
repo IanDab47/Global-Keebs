@@ -4,16 +4,31 @@ const db = require('../models')
 
 const typeArr = ['selling, buying, stores']
 
-router.get('/', (req, res) => {
-  const errorMsg = req.query.error || null
-  const filterType = req.query.filter || null
-  const trueType = typeArr.filter(type => filterType === type)
-
-  if(trueType) {
-    res.render('listings/list', { errorMsg })
-  } else {
-    const falseType = 'That listing does not exist.'
-    res.redirect(`/?message=${falseType}`)
+router.get('/', async (req, res) => {
+  try {
+    const errorMsg = req.query.error || null
+    const filterType = req.query.filter || null
+    const trueType = typeArr.filter(type => filterType === type)
+  
+    
+    if(trueType) {
+      const listings = db.listing.findAll({
+        where: {
+          flair_text: filterType.toUpperCase()
+        }
+      })
+      res.render('listings/list', { 
+        webpage: 'listings',
+        listings,
+        errorMsg
+      })
+    } else {
+      const errorMsg = 'Something went wrong. Returning back home for safety'
+      res.redirect(`/?message=${errorMsg}`)
+    }
+  } catch(err) {
+    const errorMsg = 'Something went wrong. Returning back home for safety'
+    res.redirect(`/?error=${errorMsg}`)
   }
 })
 

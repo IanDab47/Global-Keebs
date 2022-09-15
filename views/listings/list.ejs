@@ -1,1 +1,13 @@
-<h1>Results for <%= webpage %></h1>
+<h1>Here are all listings</h1>
+
+<% listings.forEach(listing => { %>
+  <div class="listing-container">
+    <a href="/listings/<%= listing.page_id %>">
+      <h2><%= listing.title %></h2>
+      <p><%= listing.author %></p>
+      <div>
+        <p><%= listing.location %></p>
+      </div>
+    </a>
+  </div>
+<% }) %>

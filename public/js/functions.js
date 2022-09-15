@@ -30,7 +30,7 @@ const createListing = async (listing) => {
   const author_ref = listing.author_fullname
   const created_utc = listing.created_utc
   const downs = listing.downs
-  const flair_text = listing.link_flair_text
+  const flair_text = listing.link_flair_text.toUpperCase()
   const page_id = listing.id || null
   const page_name = listing.name
   const self_text = listing.selftext
@@ -73,7 +73,6 @@ const createListing = async (listing) => {
   })
 
   return created
-
   // const someText = [
   //   listing.selftext
   // ]
@@ -94,23 +93,25 @@ const addListings = async (url) => {
   let allListings = await axios.get(url)
     .then(response => {
       response.data.data.children.map((listing, index) => {
+        // let newListing = null
         // Add listings to array
-        // listings.push(listing.data)
+        listings.push(listing.data)
+        // if(listing.data && listing.data.link_flair_text) {
+        //   newListing = createListing(listing)
+        // }
 
-        const newListing = createListing(listing)
-
-        if(newListing) {
+        // if(newListing) {
           // check for final possible listing
           if(index === response.data.data.dist - 1 && response.data.data.after === null || listings.length === 1000) {
           // if(index === response.data.data.dist - 1) {
             console.log('done!')
   
-            // listings = filterListings(listings)
-            // console.log('filtered!')
+            listings = filterListings(listings)
+            console.log('filtered!')
   
-            // listings.map((listing, index) => {
-            //   listings[index] = createListing(listing)
-            // })
+            listings.map((listing, index) => {
+              listings[index] = createListing(listing)
+            })
           } else if (index === response.data.data.dist - 1) { // Checks for end of page
             // Update url to load next page
             after = response.data.data.after
@@ -120,10 +121,7 @@ const addListings = async (url) => {
             // console.log(response.data.data.after, listings.length)
             return addListings(url)
           }
-        } else {
-          console.log('done!')
-          return
-        }
+        // }
       })
     })
     .catch(console.warn)
@@ -138,15 +136,15 @@ const filterListings = (listings) => {
   listings = listings.filter(listing => listing.link_flair_text !== null)
 
   // Remove irrelevant listings
-  listings = listings.filter(listing => listing.link_flair_text.toUpperCase() !== 'INTEREST CHECK' && 
-                                        listing.link_flair_text.toUpperCase() !== 'GROUP BUY' &&
-                                        listing.link_flair_text.toUpperCase() !== 'PURCHASED' &&
-                                        listing.link_flair_text.toUpperCase() !== 'SERVICE' &&
-                                        listing.link_flair_text.toUpperCase() !== 'TRADED' &&
-                                        listing.link_flair_text.toUpperCase() !== 'STORE' &&
-                                        listing.link_flair_text.toUpperCase() !== 'SOLD' &&
-                                        listing.link_flair_text.toUpperCase() !== 'BULK' &&
-                                        listing.link_flair_text.toUpperCase() !== 'META')
+  // listings = listings.filter(listing => listing.link_flair_text.toUpperCase() !== 'INTEREST CHECK' && 
+  //                                       listing.link_flair_text.toUpperCase() !== 'GROUP BUY' &&
+  //                                       listing.link_flair_text.toUpperCase() !== 'PURCHASED' &&
+  //                                       listing.link_flair_text.toUpperCase() !== 'SERVICE' &&
+  //                                       listing.link_flair_text.toUpperCase() !== 'TRADED' &&
+  //                                       listing.link_flair_text.toUpperCase() !== 'STORE' &&
+  //                                       listing.link_flair_text.toUpperCase() !== 'SOLD' &&
+  //                                       listing.link_flair_text.toUpperCase() !== 'BULK' &&
+  //                                       listing.link_flair_text.toUpperCase() !== 'META')
 
   return listings
 }
