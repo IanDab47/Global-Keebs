@@ -107,6 +107,8 @@ const createListing = async (listing) => {
         url: url
       }
     })
+
+    console.log(created)
   
     return created
     // const someText = [
@@ -132,14 +134,14 @@ const addListings = async (url) => {
     .then(response => {
       response.data.data.children.map( async (listing, index) => {
         try {
-          const newListing = null
+          let newListing = null
           // let newListing = null
           // Add listings to array
-          listings.push(listing.data)
-          // if(listing.data.link_flair_text !== null || listing.data.link_flair_text !== undefined) {
-          //   newListing = await createListing(listing.data)
-          // }
-          // if(newListing) {
+          // listings.push(listing.data)
+          if(listing.data.link_flair_text !== null || listing.data.link_flair_text !== undefined) {
+            newListing = await createListing(listing.data)
+          }
+          if(newListing) {
             // check for final possible listing
             if(index === response.data.data.dist - 1 && response.data.data.after === null || listings.length === 1000) {
             // if(index === response.data.data.dist - 1) {
@@ -148,8 +150,8 @@ const addListings = async (url) => {
               listings = filterListings(listings)
               console.log('filtered')
 
-              listings.map(listing => {
-                createListing(listing)
+              listings.map(async listing => {
+                await createListing(listing)
               })
 
               return
@@ -162,11 +164,10 @@ const addListings = async (url) => {
               console.log(response.data.data.after, listings.length)
               return await addListings(url)
             }
-          // }
+          }
         } catch(err) {
-
+          console.log(err)
         }
-        
       })
     })
     .catch(console.warn)

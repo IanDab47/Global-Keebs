@@ -13,19 +13,18 @@ router.get('/', async (req, res) => {
 
     console.log(filterType)
   
-    // Check for bad filter type
-    if(filterType !== null && !trueType) {
+    
+    if(filterType !== null && !trueType) { // Check for bad filter type
       const errorMsg = 'Something went wrong. Returning back home for safety'
       res.redirect(`/?message=${errorMsg}`)
 
-      // Check for error message
-    } else if(errorMsg !== null) {
+    } else if(errorMsg !== null) { // Check for error message
       const errorMsg = 'Something went wrong. Returning back home for safety'
       res.redirect(`/?message=${errorMsg}`)
 
-      // Default here because everything else works (I think)
-    } else {
+    } else { // Default here because everything else works (I think)
       let listings = null
+      // Check for filter settings
       if(filterType) {
         listings = await db.listing.findAll({
           where: {

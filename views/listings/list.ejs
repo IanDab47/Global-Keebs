@@ -3,10 +3,10 @@
 <% listings.forEach(listing => { %>
   <div class="listing-display-container">
     <a href="/listings/<%= listing.page_id %>">
-      <h2><%= listing.title %></h2>
-      <p><%= listing.author %></p>
+      <h2 class="listings-title"><%= listing.title %></h2>
+      <p class="listings-author">u/<%= listing.author %></p>
       <div>
-        <p><%= listing.location %></p>
+        <p class="listings-locale"><%= listing.location %></p>
       </div>
     </a>
   </div>
