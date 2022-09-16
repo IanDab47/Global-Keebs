@@ -10,6 +10,8 @@ router.get('/', (req, res) => {
 
   res.render('user/main', {
     webpage: user.username,
+    message: null,
+    errorMsg: null,
     user
   })
 })
@@ -19,11 +21,16 @@ router.get('/login', (req, res) => {
 
   res.render('user/login', {
     webpage: 'Login',
-    message: loginStatus
+    message: loginStatus,
+    errorMsg: null,
   })
   
   router.get('/signup', (req, res) => {
-    res.render('user/new', { webpage: 'Sign-Up' })
+    res.render('user/new', {
+      webpage: 'Sign-Up',
+      message: null,
+      errorMsg: null,
+    })
   })
 })
 
@@ -37,7 +44,7 @@ router.post('/', async (req, res) => {
     // Check for user email
     const loginUser = await db.user.findOne({
       where: {
-        email: req.body.email
+        username: req.body.name
       }
     })
 

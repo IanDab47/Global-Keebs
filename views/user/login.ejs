@@ -3,6 +3,9 @@
 <form action="/user" method="POST">
   <label for="name">Enter your username or email</label>
   <input type="string" id="name" name="name">
+  <% if(message) { %>
+    <p class="login-error"><%= message %></p>
+  <% } %>
   <label for="password">Password</label>
   <input type="password" id="password" name="password">
 
