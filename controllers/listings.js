@@ -38,7 +38,13 @@ router.get('/', async (req, res) => {
       } else {
         listings = await db.listing.findAll()
       }
-      // console.log(listings)
+
+      if(search) {
+        listings = listings.filter(listing => {
+          listing.dataValues.self_text.includes(search) || listing.dataValues.title.includes(search)
+        })
+      }
+      
       res.render('listings/list', { 
         webpage: 'listings',
         message: null,
@@ -60,7 +66,7 @@ router.get('/:page_id', async (req, res) => {
         page_id: req.params.page_id
       }
     })
-    // console.log(listing)
+    console.log(listing)
     res.render('listings/show', {
       webpage: null,
       message: null,
