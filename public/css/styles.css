@@ -24,8 +24,8 @@
   --bg-lig-2: #f1f1f1;
   --flr-sell: #ff5555;
   --flr-buy: #50fa7b;
-  --flr-trd: #df3838;
-  --flr-gb: #df3838;
+  --flr-trd: #ff79c6;
+  --flr-gb: #8be9fd;
   --input-bg: #dfdfdf;
 }
 
@@ -210,7 +210,8 @@ nav > .listing-container {
 
 /* FLAIR ELEMENTS */
 .selling-flair {
-  background: ;
+  content: 'Selling';
+  background: var(--flr-sell);
 }
 
 /* LISTINGS */
@@ -226,6 +227,7 @@ nav > .listing-container {
 }
 
 ul {
+  display: none;
   position: absolute;
   color: transparent;
 }
@@ -241,6 +243,7 @@ header {
   justify-content: space-between;
   width: 100vw;
   min-width: 400px;
+  max-height: 25em;
   background: linear-gradient(
     var(--nav-act-1),
     var(--nav-act-2)
@@ -251,11 +254,16 @@ header {
 }
 
 header h1 {
-  width: 67%;
-  max-height: 15em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  width: 67%; 
+  max-height: 3.9em;
+  overflow: hidden;
   font-family: montserrat;
   font-size: 4.5em;
   color: var(--bg-lig-2);
+  text-overflow: ellipsis;
 }
 
 .listing-information {
