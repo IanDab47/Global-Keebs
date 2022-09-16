@@ -22,6 +22,10 @@
   --nav-act-2: #df3838;
   --bg-lig-1: #eae7e0;
   --bg-lig-2: #f1f1f1;
+  --flr-sell: #ff5555;
+  --flr-buy: #50fa7b;
+  --flr-trd: #df3838;
+  --flr-gb: #df3838;
   --input-bg: #dfdfdf;
 }
 
@@ -204,6 +208,11 @@ nav > .listing-container {
   display: none;
 }
 
+/* FLAIR ELEMENTS */
+.selling-flair {
+  background: ;
+}
+
 /* LISTINGS */
 .listing-display-container {
   display: flex;
@@ -252,10 +261,21 @@ header h1 {
 .listing-information {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  font-size: 3em;
-  font-weight: 300;
+  /* justify-content: space-evenly; */
+  background: linear-gradient(
+    270deg,
+    rgb(100 0 0 / .2),
+    rgb(0 0 0 / .0)
+  );
+  font-family: 'montserrat alternates';
+  font-size: 2.5em;
+  font-weight: 200; font-style: italic;
+  color: var(--bg-lig-2);
   text-align: right;
+  padding: 80px;
+  padding-left: 240px;
+  margin: -80px;
+  margin-left: -240px;
 }
 
 /* LOGIN */

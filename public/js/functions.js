@@ -90,7 +90,7 @@ const createListing = async (listing) => {
     // Find or create new model with necessary listing data
     const [newListing, created] = await db.listing.findOrCreate({
       where: {
-        page_id: page_id,
+        page_id: page_id
       },
       defaults: {
         author: author,
