@@ -47,6 +47,7 @@ a {
   border: none;
   border-radius: 3px;
   padding: .5em 1.5em;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar {
@@ -220,6 +221,14 @@ a {
   margin: 40px 7%;
 }
 
+.login-information * {
+  margin: 10px 0;
+}
+
+.login-information *:not(.user-entry) {
+  user-select: none;
+}
+
 .login-instruction {
   text-align: center;
   font-size: 1.2em;
@@ -227,12 +236,12 @@ a {
   padding-bottom: 20px;
 }
 
-.login-information * {
-  margin: 10px 0;
-}
-
 .user-entry:nth-child(2) {
   padding-top: 40px;
+}
+
+.user-entry {
+  padding-bottom: 5px;
 }
 
 .user-entry * {
@@ -240,14 +249,31 @@ a {
 }
 
 .login-entry {
-  width: 100%; height: 3em;
+  width: 100%; height: 2.5em;
   background: var(--input-bg);
+  font-size: .8em;
   border: none;
   border-radius: 8px;
+  outline: none;
+  padding-left: 12px;
+}
+
+.login-submit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; align-items: center;
+}
+
+.login-btn {
+  background: var(--nav-act-1);
+  font-size: .8em;
+  color: #EEE;
 }
 
 .new-account-link {
-
+  font-size: .6em;
+  text-decoration: underline;
+  margin: 0;
 }
 
 @keyframes drop-down-message {
