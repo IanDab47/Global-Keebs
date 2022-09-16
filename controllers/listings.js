@@ -12,8 +12,7 @@ router.get('/', async (req, res) => {
     const search = req.query.search || null
     const trueType = typeArr.filter(type => filterType === type)
 
-    console.log(filterType)
-  
+    // console.log(filterType)
     
     if(filterType !== null && !trueType) { // Check for bad filter type
       const errorMsg = 'Something went wrong. Returning back home for safety'
@@ -40,12 +39,10 @@ router.get('/', async (req, res) => {
       }
 
       if(search) {
-        listings = listings.filter(listing => {
-          listing.dataValues.self_text.includes(search) || listing.dataValues.title.includes(search)
-        })
+        listings = listings.filter(listing => listing.dataValues.self_text.includes(search))
       }
-      
-      res.render('listings/list', { 
+
+      res.render('listings/list', {
         webpage: 'listings',
         message: null,
         errorMsg,
@@ -66,7 +63,7 @@ router.get('/:page_id', async (req, res) => {
         page_id: req.params.page_id
       }
     })
-    console.log(listing)
+    // console.log(listing)
     res.render('listings/show', {
       webpage: null,
       message: null,
