@@ -21,6 +21,7 @@
   --nav-act-1: #d62828;
   --bg-lig-1: #eae7e0;
   --bg-lig-2: #f1f1f1;
+  --input-bg: #d9d9d9;
 }
 
 body {
@@ -40,6 +41,12 @@ body :not(.nav-container *) {
 a {
   color: currentColor;
   text-decoration: none;
+}
+
+.btn {
+  border: none;
+  border-radius: 3px;
+  padding: .5em 1.5em;
 }
 
 ::-webkit-scrollbar {
@@ -92,6 +99,7 @@ a {
   font-size: 3.6em;
   font-weight: 600;
   letter-spacing: -.08rem;
+  color: var(--nav-act-1);
   font-style: italic;
   margin-top: -6px;
 }
@@ -173,6 +181,73 @@ a {
   padding-bottom: 20px;
   margin: 0 40px;
   margin-bottom: 6px;
+}
+
+/* LOGIN */
+.login-container {
+  display: flex;
+  justify-content: center; align-items: center;
+  width: 100vw; height: 100vh;
+  background: var(--bg-lig-1);
+}
+
+.login-content {
+  display: flex;
+  justify-content: start; align-items: start;
+  flex-direction: column;
+  width: 80vw; height: 80vh;
+  max-width: 600px;
+  background: var(--bg-lig-2);
+  border-radius: 80px;
+  box-shadow: 0 2px 12px rgb(0 0 0 / .15);
+}
+
+.login-content > .title-container {
+  display: flex;
+  align-items: center; justify-content: center;
+  width: 100%; height: 18vh;
+  background: var(--nav-bg-1);
+  font-size: 20px;
+  border-bottom: 16px solid var(--nav-brd-1);
+  border-radius: 80px 80px 0 0;
+}
+
+.login-information {
+  display: flex;
+  flex-direction: column;
+  width: 86%;
+  font-size: 1.4em; font-weight: 300;
+  margin: 40px 7%;
+}
+
+.login-instruction {
+  text-align: center;
+  font-size: 1.2em;
+  border-bottom: 2px solid var(--nav-brd-1);
+  padding-bottom: 20px;
+}
+
+.login-information * {
+  margin: 10px 0;
+}
+
+.user-entry:nth-child(2) {
+  padding-top: 40px;
+}
+
+.user-entry * {
+  display: block;
+}
+
+.login-entry {
+  width: 100%; height: 3em;
+  background: var(--input-bg);
+  border: none;
+  border-radius: 8px;
+}
+
+.new-account-link {
+
 }
 
 @keyframes drop-down-message {

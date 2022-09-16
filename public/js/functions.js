@@ -36,22 +36,23 @@ const filterSelfText = (self_text) => {
   if(parenTextArr) {
     parenTextArr.forEach(text => {
       if(text.includes('http')) {
-        const re_link = /`${text}`/
+        const re_link = new RegExp(text)
         self_text = self_text.replace(re_link, "")
+        self_text = self_text.replace(/\(\)/, "")
         // console.log(text)
       }
     })
-    console.log(parenTextArr)
+    // console.log(parenTextArr)
   }
   console.log('------------ ALL LISITNG --------------')
 
-  // console.log(self_text)
+  console.log(self_text)
   console.log('------------ NEW LISITNG --------------')
 }
 
 const createListing = async (listing) => {
   try {
-    // console.log(listing)
+    console.log(listing.id)
 
     // grab immediate values
     const author = listing.author
@@ -69,7 +70,7 @@ const createListing = async (listing) => {
     // Replace all '\n' with <br>
     const re_newLine = /\\n/g
     // console.log(listing.selftext.match(re_newLine))
-    const self_text = listing.selftext.replace(re_newLine, "<br>")
+    const self_text = listing.selftext.replaceAll('\n', "<br>")
   
     // grab first bracket for location
     const re_local = /\[([^\]]+)\]/
@@ -82,7 +83,7 @@ const createListing = async (listing) => {
     let timestamp = ''
     const listingText = self_text.match(re_imgur) || ['ha', 'no timestamp']
     // console.log(listingText)
-    // filterSelfText(self_text)
+    filterSelfText(self_text)
     // console.log('------ NEW LISTING ------')
     // listingText[1].includes('imgur') ? timestamp = listingText[1] : timestamp = 'no timestamp'
   
@@ -108,7 +109,7 @@ const createListing = async (listing) => {
       }
     })
 
-    console.log(created)
+    // console.log(created)
   
     return created
     // const someText = [
@@ -141,7 +142,7 @@ const addListings = async (url) => {
           if(listing.data.link_flair_text !== null || listing.data.link_flair_text !== undefined) {
             newListing = await createListing(listing.data)
           }
-          if(newListing) {
+          // if(newListing) {
             // check for final possible listing
             if(index === response.data.data.dist - 1 && response.data.data.after === null || listings.length === 1000) {
             // if(index === response.data.data.dist - 1) {
@@ -164,7 +165,7 @@ const addListings = async (url) => {
               console.log(response.data.data.after, listings.length)
               return await addListings(url)
             }
-          }
+          // }
         } catch(err) {
           console.log(err)
         }

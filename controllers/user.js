@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
       const encryptedUserId = crypto.AES.encrypt(loginUser.id.toString(), process.env.ENC_SECRET)
       const encryptedUserIdString = encryptedUserId.toString()
       res.cookie('userId',encryptedUserIdString)
-      res.redirect('/user')
+      res.redirect('/')
     }
   } catch(err) {
     console.log(err)
@@ -88,7 +88,7 @@ router.post('/login', async (req, res) => {
       const encryptedUserId = crypto.AES.encrypt(newUser.id.toString(), process.env.ENC_SECRET)
       const encryptedUserIdString = encryptedUserId.toString()
       res.cookie('userId',encryptedUserIdString)
-      res.redirect('/user')
+      res.redirect('/')
     }
   } catch(err) {
     console.log(err)

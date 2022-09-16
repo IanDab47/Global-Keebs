@@ -1,15 +1,30 @@
-<h1>Global Keebs Login</h1>
+<div class="login-container">
+  <div class="login-content">
+    <div class="title-container">
+      <a href="/"><p class="title">Global Keebs</p></a>
+    </div>
+    
+    <div class="login-information">
+      <form action="/user" method="POST">
+        <p class="login-instruction">Login with your Reddit Account</p>
 
-<form action="/user" method="POST">
-  <label for="name">Enter your username or email</label>
-  <input type="string" id="name" name="name">
-  <% if(message) { %>
-    <p class="login-error"><%= message %></p>
-  <% } %>
-  <label for="password">Password</label>
-  <input type="password" id="password" name="password">
+        <div class="user-entry">
+          <label for="name">Enter your username or email</label>
+          <input type="string" class="login-entry" id="name" name="name">
+          <% if(message) { %>
+            <p class="login-error"><%= message %></p>
+          <% } %>
+        </div>
 
-  <button type="submit">Login</button>
-</form>
-
-<a href="/user/signup">Create Account</a>
+        <div class="user-entry">
+          <label for="password">Password</label>
+          <input type="password" class="login-entry" id="password" name="password">
+        </div>
+      
+        <button type="submit" class="btn login-btn">Sign In</button>
+      </form>
+       
+      <a href="/user/signup" class="new-account-link">Create Account</a>
+    </div>
+  </div>
+</div>

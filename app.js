@@ -49,6 +49,10 @@ app.get('/', async (req, res) => {
     const message = req.query.message || null
     // const listings = functions.checkListings()
     await functions.checkListings()
+
+    if(res.locals.user) {
+      message = `Welcome ${user.username}!`
+    }
   
     res.render('index', { 
       webpage: 'Home',

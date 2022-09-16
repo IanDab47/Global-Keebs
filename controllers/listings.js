@@ -30,7 +30,9 @@ router.get('/', async (req, res) => {
           where: {
             flair_text: filterType.toUpperCase()
           },
-          order: sequelize.col('location')
+          order: [
+            [sequelize.col('created_utc'), 'DESC']
+          ]
         })
       } else {
         listings = await db.listing.findAll()
@@ -57,7 +59,7 @@ router.get('/:page_id', async (req, res) => {
         page_id: req.params.page_id
       }
     })
-    console.log(listing)
+    // console.log(listing)
     res.render('listings/show', {
       webpage: null,
       message: null,
