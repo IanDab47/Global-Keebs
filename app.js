@@ -46,11 +46,12 @@ app.use(async (req, res, next) => {
 app.get('/', async (req, res) => {
   try {
     const error = req.query.error || null
-    const message = req.query.message || null
+    let message = req.query.message || null
     // const listings = functions.checkListings()
     await functions.checkListings()
 
     if(res.locals.user) {
+      const user = res.locals.user
       message = `Welcome ${user.username}!`
     }
   

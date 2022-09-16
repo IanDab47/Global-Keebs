@@ -21,7 +21,7 @@
   --nav-act-1: #d62828;
   --bg-lig-1: #eae7e0;
   --bg-lig-2: #f1f1f1;
-  --input-bg: #d9d9d9;
+  --input-bg: #dfdfdf;
 }
 
 body {
@@ -172,6 +172,37 @@ a {
   margin-left: 8vw;
 }
 
+.message-container {
+  position: relative;
+  display: flex;
+  align-items: center; justify-content: center;
+  width: 100vw; height: 2.5em;
+  background: #d6a828;
+  /* font-weight: 600; */
+  color: #EEE;
+  user-select: none;
+  z-index: -1;
+
+  animation-name: drop-down-message;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-duration: 1.2s;
+}
+
+.message-container:hover {
+  cursor: pointer;
+}
+
+.message-container > p::after {
+  content: 'X';
+  font-size: 1.2em; font-weight: 300;
+  position: absolute;
+  margin-left: 8vw;
+}
+
+.hide-drop-down {
+  display: none;
+}
+
 /* LISTINGS */
 .listing-display-container {
   display: flex;
@@ -213,6 +244,10 @@ a {
   border-radius: 80px 80px 0 0;
 }
 
+.login-content *:not(.user-entry) {
+  user-select: none;
+}
+
 .login-information {
   display: flex;
   flex-direction: column;
@@ -221,12 +256,22 @@ a {
   margin: 40px 7%;
 }
 
+.login-information:has(.login-instruction) p {
+  width: 86%;
+  margin: 20px 7% 40px;
+}
+
+.login-information:has(.signup-instruction) p {
+  width: 80%;
+  margin: 0 10%;
+}
+
 .login-information * {
   margin: 10px 0;
 }
 
-.login-information *:not(.user-entry) {
-  user-select: none;
+.login-information .user-entry:nth-child(2) {
+  padding-top: 30px;
 }
 
 .login-instruction {
@@ -236,8 +281,12 @@ a {
   padding-bottom: 20px;
 }
 
-.user-entry:nth-child(2) {
-  padding-top: 40px;
+.signup-instruction {
+  text-align: center;
+  font-size: 1.2em;
+  border-bottom: 2px solid var(--nav-brd-1);
+  margin-top: -20px;
+  padding-bottom: 20px;
 }
 
 .user-entry {
@@ -248,10 +297,12 @@ a {
   display: block;
 }
 
-.login-entry {
+.login-input {
   width: 100%; height: 2.5em;
   background: var(--input-bg);
+  font-family: 'montserrat alternates';
   font-size: .8em;
+  color: #444;
   border: none;
   border-radius: 8px;
   outline: none;

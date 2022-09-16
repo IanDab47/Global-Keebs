@@ -39,7 +39,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-router.post('/', async (req, res) => {
+router.post('/login', async (req, res) => {
   try { 
     // Check for user email
     const loginUser = await db.user.findOne({
@@ -47,8 +47,15 @@ router.post('/', async (req, res) => {
         username: req.body.name
       }
     })
+    if(!loginUser) {
+      loginUser = await db.user.findOne({
+        where: {
+          email: req.body.name
+        }
+      })
+    }
 
-    const badLogin = 'Invalid or Non-Existent Email or Password'
+    const badLogin = 'Invalid or Non-Existent Account Info'
 
     if(!loginUser) {
       console.log('Invalid or Non-Existent Email')
@@ -70,7 +77,7 @@ router.post('/', async (req, res) => {
   }
 })
 
-router.post('/login', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
     const hashedPass = bcrypt.hashSync(req.body.password, 12)
     const [newUser, created] = await db.user.findOrCreate({
@@ -78,6 +85,7 @@ router.post('/login', async (req, res) => {
         email: req.body.email,
       },
       defaults: {
+        username: req.body.name,
         password: hashedPass
       }
     })

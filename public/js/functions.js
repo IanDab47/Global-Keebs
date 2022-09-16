@@ -38,12 +38,12 @@ const filterSelfText = (self_text) => {
       if(text.includes('http')) {
         const re_link = new RegExp(text)
         self_text = self_text.replace(re_link, "")
-        self_text = self_text.replace(/\(\)/, "")
         // console.log(text)
       }
     })
     // console.log(parenTextArr)
   }
+  self_text = self_text.replace(/\(\)/g, "")
   console.log('------------ ALL LISITNG --------------')
 
   console.log(self_text)
@@ -142,7 +142,7 @@ const addListings = async (url) => {
           if(listing.data.link_flair_text !== null || listing.data.link_flair_text !== undefined) {
             newListing = await createListing(listing.data)
           }
-          // if(newListing) {
+          if(newListing) {
             // check for final possible listing
             if(index === response.data.data.dist - 1 && response.data.data.after === null || listings.length === 1000) {
             // if(index === response.data.data.dist - 1) {
@@ -165,7 +165,7 @@ const addListings = async (url) => {
               console.log(response.data.data.after, listings.length)
               return await addListings(url)
             }
-          // }
+          }
         } catch(err) {
           console.log(err)
         }

@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
   try {
     const errorMsg = req.query.error || null
     const filterType = req.query.filter || null
+    const search = req.query.search || null
     const trueType = typeArr.filter(type => filterType === type)
 
     console.log(filterType)

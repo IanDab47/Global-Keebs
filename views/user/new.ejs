@@ -1,10 +1,3 @@
-<h1>Global Keebs Sign-Up</h1>
-
-<form action="/user" method="POST">
-
-  <button type="Create Account">Login</button>
-</form>
-
 <div class="login-container">
   <div class="login-content">
     <div class="title-container">
@@ -13,11 +6,11 @@
     
     <div class="login-information">
       <form action="/user/signup" method="POST">
-        <p class="login-instruction">Login with your Reddit Account</p>
+        <p class="signup-instruction">Enter your information</p>
 
         <div class="user-entry">
           <label for="name">Username</label>
-          <input type="string" class="login-entry" id="name" name="name">
+          <input type="string" class="login-input" id="name" name="name">
           <% if(message) { %>
             <p class="login-error"><%= errorUser %></p>
           <% } %>
@@ -25,21 +18,20 @@
 
         <div class="user-entry">
           <label for="email">Email</label>
-          <input type="email" class="login-entry" id="email" name="email">
+          <input type="email" class="login-input" id="email" name="email">
         </div>
-
 
         <div class="user-entry">
           <label for="password">Password</label>
-          <input type="password" class="login-entry" id="password" name="password">
+          <input type="password" class="login-input" id="password" name="password">
           <% if(message) { %>
             <p class="login-error"><%= errorPass %></p>
           <% } %>
         </div>
       
         <div class="login-submit">
-          <button type="submit" class="btn login-btn">Sign In</button>
-          <a href="/user/signup" class="new-account-link">Create Account</a>
+          <button type="submit" class="btn login-btn">Create Account</button>
+          <a href="/user/login" class="new-account-link">Already have an account? Login here</a>
         </div>
       </form>
     </div>
