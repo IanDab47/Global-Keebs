@@ -310,18 +310,17 @@ nav > .listing-container {
 
 .listing-display-container div:first-of-type{
   display: flex;
-  justify-content: center;
   gap: 20px;
-  /* width: 100%; */
 }
 
 .listing-display-container .selling-flair::before {
-  width: auto; height: 1.3em;
-  font-size: 1.5em;
+  width: auto; height: 1.2em;
+  font-size: 1.3em;
   border-radius: 4px 20px 4px 20px;
   margin: 0;
 }
 
+/* LISTING SHOW */
 .listing-header {
   display: flex;
   justify-content: space-between;
@@ -474,7 +473,7 @@ nav > .listing-container {
 }
 
 .comments-section label {
-  font-size: 1.2em; font-weight: 400;
+  font-size: 1.3em; font-weight: 300;
 }
 
 .comment-input {
@@ -492,6 +491,7 @@ nav > .listing-container {
   background-color: var(--nav-brd-1);
   font-family: lato;
   font-size: 1em;
+  color: var(--bg-lig-2);
   margin-top: 15px;
   box-shadow: 0 0 12px rgb(90 90 60 / .1);
 }

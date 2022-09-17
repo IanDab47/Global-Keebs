@@ -48,7 +48,7 @@ router.get('/logout', (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     // Check for user email
-    const loginUser = await db.user.findOne({
+    let loginUser = await db.user.findOne({
       where: {
         username: req.body.name
       }
