@@ -81,11 +81,11 @@ const createListing = async (listing) => {
     // grab first link and filter for imgur link
     const re_imgur = /\(([^)]+)\)/g
     let timestamp = ''
-    const listingText = self_text.match(re_imgur) || ['ha', 'no timestamp']
+    const listingText = re_imgur.exec(self_text) || ['ha', '']
     // console.log(listingText)
     filterSelfText(self_text)
     // console.log('------ NEW LISTING ------')
-    // listingText[1].includes('imgur') ? timestamp = listingText[1] : timestamp = 'no timestamp'
+    listingText[1].includes('imgur') ? timestamp = listingText[1] : timestamp = ''
   
     // Find or create new model with necessary listing data
     const [newListing, created] = await db.listing.findOrCreate({

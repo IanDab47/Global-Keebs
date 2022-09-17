@@ -4,21 +4,54 @@
   <li><%= listing.page_id %></li>
   <li><%= listing.page_name %></li>
   <li><%- listing.self_text %></li>
-  <li><%= listing.timestamp %></li>
   <li><%= listing.ups %></li>
   <li><%= listing.upvote_ratio %></li>
 </ul>
 
 <div class='listing-container'>
-  <header>
-    <a href="<%= listing.url %>"><h1><%= listing.title %></h1></a>
+  <header class="listing-header">
+    <a href="<%= listing.url %>" target="_blank"><h1><%= listing.title %></h1></a>
     <div class="listing-information">
-      <p><%= listing.flair_text %></p>
-      <p><a href="http://reddit.com/user/<%= listing.author %>" target="_blank">u/<%= listing.author %></a></p>
+      <!-- <p><%= listing.flair_text %></p> -->
+      <div class="selling-flair"></div>
+      <p class="listing-author">
+        <a href="http://reddit.com/user/<%= listing.author %>" target="_blank">u/<%= listing.author %></a>
+      </p>
       <p><%= listing.created_utc %></p>
       <p><%= listing.location %></p>
     </div>
   </header>
 
+  <% if(listing.timestamp !== '') { %>
+    <section class="timestamp-display">
+      <div class="timestamp-title">
+        <h2>Timestamp Gallery</h2>
+      </div>
+
+      <div class="timestamp-link">
+        <a href="<%= listing.timestamp %>" target="_blank">[TIMESTAMP]</a>
+      </div>
+    </section>
+  <% } %>
+
+  <section class="selftext-display">
+    <div class="selftext-title">
+      <h2>Listing Details</h2>
+    </div>
+
+    <div class="selftext-content">
+      <p><%- listing.self_text %></p>
+    </div>
+  </section>
+
+  <section class="comments-section">
+    <header class="comments-header">
+      <p>Comments</p>
+    </header>
+    <form action="/listings/<%= listing.page_id %>" method="POST">
+      <label for="comment">Reply to u/<%= listing.author %></label>
+      <textarea id="comment" name="comment" class="comment-input"></textarea> 
+    </form>
+  </section>
 
 </div>

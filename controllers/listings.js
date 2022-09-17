@@ -1,12 +1,15 @@
+require('dotenv').config()
 const express = require('express')
-const { sequelize } = require('../models')
 const router = express.Router()
+const crypto = require('crypto-js')
+const bcrypt = require('bcrypt')
 const db = require('../models')
 
 const typeArr = ['selling, buying, stores']
 
 router.get('/', async (req, res) => {
   try {
+    const user = res.locals.user
     const errorMsg = req.query.error || null
     const filterType = req.query.filter || null
     const search = req.query.search || null
@@ -46,7 +49,8 @@ router.get('/', async (req, res) => {
         webpage: 'listings',
         message: null,
         errorMsg,
-        listings
+        listings,
+        user
       })
     }
   } catch(err) {
@@ -58,6 +62,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:page_id', async (req, res) => {
   try {
+    const user = res.locals.user
     const listing = await db.listing.findOne({
       where: {
         page_id: req.params.page_id
@@ -68,7 +73,8 @@ router.get('/:page_id', async (req, res) => {
       webpage: null,
       message: null,
       errorMsg: null,
-      listing
+      listing,
+      user
     })
   } catch(err) {
     console.warn(err)

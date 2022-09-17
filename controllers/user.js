@@ -17,20 +17,26 @@ router.get('/', (req, res) => {
 })
 
 router.get('/login', (req, res) => {
+  const user = res.locals.user
   const loginStatus = req.query.status || null
 
   res.render('user/login', {
     webpage: 'Login',
     message: loginStatus,
     errorMsg: null,
+    user
   })
-  
-  router.get('/signup', (req, res) => {
-    res.render('user/new', {
-      webpage: 'Sign-Up',
-      message: null,
-      errorMsg: null,
-    })
+})
+
+router.get('/signup', (req, res) => {
+  const user = res.locals.user
+  const loginStatus = req.query.status || null
+
+  res.render('user/new', {
+    webpage: 'Sign-Up',
+    message: loginStatus,
+    errorMsg: null,
+    user
   })
 })
 
@@ -40,7 +46,7 @@ router.get('/logout', (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-  try { 
+  try {
     // Check for user email
     const loginUser = await db.user.findOne({
       where: {
