@@ -27,6 +27,7 @@
   --flr-trd: #ff79c6;
   --flr-gb: #8be9fd;
   --input-bg: #dfdfdf;
+  --btn-bg: #C9C4B2;
 }
 
 body {
@@ -261,7 +262,7 @@ nav > .listing-container {
 
 .search-btn {
   position: absolute;
-  background-color: var(--nav-brd-1);
+  background-color: var(--btn-bg);
   font-family: 'montserrat alternates';
   font-size: 1.1em; font-weight: 500; font-style: italic;
   color: var(--nav-bg-1);
@@ -297,19 +298,27 @@ nav > .listing-container {
   border-radius: 0 20px 0 20px;
   padding: 10px 12px;
   padding-bottom: 20px;
-  margin: 0 40px;
+  margin: 0 60px;
   margin-bottom: 6px;
-}
-
-ul {
-  display: none;
-  position: absolute;
-  color: transparent;
 }
 
 .listing-container:not(nav > .listing-container) {
   width: 100vmax;
   min-height: 90vh;
+  margin: 0;
+}
+
+.listing-display-container div:first-of-type{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  /* width: 100%; */
+}
+
+.listing-display-container .selling-flair::before {
+  width: auto; height: 1.3em;
+  font-size: 1.5em;
+  border-radius: 4px 20px 4px 20px;
   margin: 0;
 }
 

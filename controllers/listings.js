@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt')
 const { sequelize } = require('../models')
 const db = require('../models')
 
-const typeArr = ['selling, buying, stores']
+const typeArr = ['selling', 'buying', 'stores']
 
 router.get('/', async (req, res) => {
   try {

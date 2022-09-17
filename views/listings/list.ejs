@@ -20,7 +20,10 @@
 <% listings.forEach(listing => { %>
   <section class="listing-display-container">
     <a href="/listings/<%= listing.page_id %>">
-      <h2 class="listings-title"><%= listing.title %></h2>
+      <div>
+        <h2 class="listings-title"><%= listing.title %></h2>
+        <div class="selling-flair"></div>
+      </div>
       <p class="listings-author">u/<%= listing.author %></p>
       <div>
         <p class="listings-locale"><%= listing.location %></p>
