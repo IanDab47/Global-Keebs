@@ -2,7 +2,7 @@
   <p><%= filter %></p>
 </header>
 
-<form action="/">
+<form action="/listings" method="POST">
   <section class="search-container">
     <div class="searchbar">
       <input type="text" class="listing-search" id="search" name="search" placeholder="Search for an item...">
@@ -10,7 +10,7 @@
     </div>
 
     <div class="toggle-container">
-      <input type="checkbox" id="toggle-trade" value="trade">
+      <input type="checkbox" id="toggle-trade" name="trade">
       <label for="toggle-trade">Include Trade Listings</label>
     </div>
   </section>

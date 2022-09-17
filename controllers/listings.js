@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
   try {
     const user = res.locals.user
     const errorMsg = req.query.error || null
-    const filterType = req.query.filter || null
+    const filterType = req.query.filter || 'Selling'
     const search = req.query.search || req.body.search || null
     const trueType = typeArr.filter(type => filterType === type)
 
@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
       }
 
       if(search) {
-        listings = listings.filter(listing => listing.dataValues.self_text.includes(search))
+        listings = listings.filter(listing => listing.dataValues.self_text.toLowerCase().includes(search.toLowerCase()))
       }
 
       res.render('listings/list', {
@@ -87,7 +87,8 @@ router.get('/:page_id', async (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  res.redirect(`/listings/${req.url}&search=${req.body.search}`)
+  console.log(req.body)
+  res.redirect(`/listings/?search=${req.body.search}`)
 })
 
 module.exports = router

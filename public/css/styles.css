@@ -275,7 +275,7 @@ nav > .listing-container {
   max-width: 80em;
 }
 
-.toggle-container input {
+/* .toggle-container input {
   display: none;
 }
 
@@ -284,7 +284,7 @@ nav > .listing-container {
   width: 20px; height: 20px;
   background-color: var(--input-bg);
   border-radius: 50%;
-}
+} */
 
 .toggle-container label {
   font-family: 'montserrat';
