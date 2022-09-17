@@ -34,15 +34,25 @@
     </div>
   </section>
 
-  <section class="comments-section">
-    <header class="comments-header">
-      <p>Comments</p>
-    </header>
-    <form action="/listings/<%= listing.page_id %>" method="POST">
-      <label for="comment">Message u/<%= listing.author %> for further information</label>
-      <textarea id="comment" name="comment" class="comment-input"></textarea> 
+  <% if(user) { %>
+    <section class="comments-section">
+      <header class="comments-header">
+        <p>Comments</p>
+      </header>
+      <form action="/listings/<%= listing.page_id %>" method="POST">
+        <label for="comment">Message u/<%= listing.author %> for further information</label>
+        <textarea id="comment" name="comment" class="comment-input"></textarea> 
+  
+        <button type="submit" class="btn message-btn">Message</button>
+      </form>
+    </section>
+  <% } else { %>
+    <section class="comments-section">
+      <header class="comments-header">
+        <p>Comments</p>
+      </header>
+      <p>You must be logged in to send any comments.</p>
+    </section>
+  <% } %>
 
-      <button type="submit" class="btn message-btn">Message</button>
-    </form>
-  </section>
 </div>
