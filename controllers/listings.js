@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 const crypto = require('crypto-js')
 const bcrypt = require('bcrypt')
+const { sequelize } = require('../models')
 const db = require('../models')
 
 const typeArr = ['selling, buying, stores']
@@ -15,7 +16,7 @@ router.get('/', async (req, res) => {
     const search = req.query.search || null
     const trueType = typeArr.filter(type => filterType === type)
 
-    // console.log(filterType)
+    console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
     
     if(filterType !== null && !trueType) { // Check for bad filter type
       const errorMsg = 'Something went wrong. Returning back home for safety'
@@ -81,6 +82,12 @@ router.get('/:page_id', async (req, res) => {
     const badListing = 'Listing does not exist...'
     res.redirect(`/listings/?error=${badListing}`)
   }
+})
+
+router.post('/', (req, res) => {
+  const search = req.query.search
+  
+  res.redirect(`/${req.url}&search=${search}`)
 })
 
 module.exports = router

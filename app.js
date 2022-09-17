@@ -45,20 +45,21 @@ app.use(async (req, res, next) => {
 
 app.get('/', async (req, res) => {
   try {
+    const user = res.locals.user
     const error = req.query.error || null
     let message = req.query.message || null
     // const listings = functions.checkListings()
     await functions.checkListings()
 
     if(res.locals.user) {
-      const user = res.locals.user
       message = `Welcome ${user.username}!`
     }
   
     res.render('index', { 
       webpage: 'Home',
       errorMsg: error,
-      message: message
+      message: message,
+      user
     })
   } catch(err) {
     console.log(err)
