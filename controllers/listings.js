@@ -86,7 +86,7 @@ router.get('/:page_id', async (req, res) => {
 
 router.post('/', (req, res) => {
   const search = req.query.search
-  
+
   res.redirect(`/${req.url}&search=${search}`)
 })
 

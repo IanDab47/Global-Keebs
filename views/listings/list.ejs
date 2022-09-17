@@ -1,7 +1,11 @@
-<h1>Here are all listings</h1>
+<form action="/">
+  <section>
+  </section>
+</form>
+
 
 <% listings.forEach(listing => { %>
-  <div class="listing-display-container">
+  <section class="listing-display-container">
     <a href="/listings/<%= listing.page_id %>">
       <h2 class="listings-title"><%= listing.title %></h2>
       <p class="listings-author">u/<%= listing.author %></p>
@@ -9,5 +13,5 @@
         <p class="listings-locale"><%= listing.location %></p>
       </div>
     </a>
-  </div>
+  </section>
 <% }) %>
