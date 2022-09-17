@@ -68,6 +68,9 @@ const createListing = async (listing) => {
     const ups = listing.ups
     const upvote_ratio = listing.upvote_ratio
     const url = listing.url
+
+    // Create Date from created UTC
+    const date = convUnix(created_utc)
     
     // Replace all '\n' with <br>
     const re_newLine = /\\n/g
@@ -97,6 +100,7 @@ const createListing = async (listing) => {
       defaults: {
         author: author,
         author_ref: author_ref,
+        date: date,
         created_utc: created_utc,
         downs: downs,
         flair_text: flair_text,
