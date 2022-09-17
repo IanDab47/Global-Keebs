@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     author: DataTypes.STRING,
     author_ref: DataTypes.STRING,
     created_utc: DataTypes.INTEGER,
+    date: DataTypes.STRING,
     downs: DataTypes.INTEGER,
     flair_text: DataTypes.STRING,
     location: DataTypes.STRING,

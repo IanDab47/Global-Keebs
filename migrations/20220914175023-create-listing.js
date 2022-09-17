@@ -17,6 +17,9 @@ module.exports = {
       created_utc: {
         type: Sequelize.INTEGER
       },
+      date: {
+        type: Sequelize.STRING
+      },
       downs: {
         type: Sequelize.INTEGER
       },

@@ -1,4 +1,5 @@
 require('dotenv').config()
+const functions = require('../public/js/functions')
 const express = require('express')
 const router = express.Router()
 const crypto = require('crypto-js')
@@ -13,10 +14,10 @@ router.get('/', async (req, res) => {
     const user = res.locals.user
     const errorMsg = req.query.error || null
     const filterType = req.query.filter || null
-    const search = req.query.search || null
+    const search = req.query.search || req.body.search || null
     const trueType = typeArr.filter(type => filterType === type)
 
-    console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
+    // console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
     
     if(filterType !== null && !trueType) { // Check for bad filter type
       const errorMsg = 'Something went wrong. Returning back home for safety'
@@ -51,6 +52,7 @@ router.get('/', async (req, res) => {
         message: null,
         errorMsg,
         listings,
+        filter: functions.capFirstLetter(filterType),
         user
       })
     }
@@ -85,9 +87,7 @@ router.get('/:page_id', async (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const search = req.query.search
-
-  res.redirect(`/${req.url}&search=${search}`)
+  res.redirect(`/listings/${req.url}&search=${req.body.search}`)
 })
 
 module.exports = router

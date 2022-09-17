@@ -1,5 +1,18 @@
+<header class="listings-title">
+  <p><%= filter %></p>
+</header>
+
 <form action="/">
-  <section>
+  <section class="search-container">
+    <div class="searchbar">
+      <input type="text" class="listing-search" id="search" name="search" placeholder="Search for an item...">
+      <button type="submit" class="btn search-btn">Submit</button>
+    </div>
+
+    <div class="toggle-container">
+      <input type="checkbox" id="toggle-trade" value="trade">
+      <label for="toggle-trade">Include Trade Listings</label>
+    </div>
   </section>
 </form>
 

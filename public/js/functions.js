@@ -5,6 +5,8 @@ let mmURL = `https://www.reddit.com/r/mechmarket/new/.json`
 let pageCount = 0
 let listings = []
 
+const capFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1)
+
 const convUnix = (timestamp) => {
   const date = new Date(timestamp * 1000)
 
@@ -208,6 +210,7 @@ const checkListings = async () => {
 }
 
 // export necessary functions
+exports.capFirstLetter = capFirstLetter
 exports.convUnix = convUnix
 exports.ageCheck = ageCheck
 exports.checkListings = checkListings

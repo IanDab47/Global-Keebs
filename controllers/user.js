@@ -8,7 +8,7 @@ const db = require('../models')
 router.get('/', (req, res) => {
   const user = res.locals.user
 
-  res.render('user/main', {
+  res.render('user/show', {
     webpage: user.username,
     message: null,
     errorMsg: null,
