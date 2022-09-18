@@ -49,6 +49,18 @@
       <header class="comments-header">
         <p>Comments</p>
       </header>
+
+      <% if(comments) { %>
+        <section class="comments-display">
+        <% comments.forEach(item => { %>
+          <p><%= item.comment %></p>
+          <form action="/listings/<%= listing.page_id %>/?_method=DELETE" method="POST">
+            <button type="submit" class="btn delete-btn">Delete</button>
+          </form>
+          <% }) %>
+        </section>
+      <% } %>
+
       <form action="/listings/<%= listing.page_id %>" method="POST">
         <label for="comment">Message u/<%= listing.author %> for further information</label>
         <textarea id="comment" name="comment" class="comment-input"></textarea> 

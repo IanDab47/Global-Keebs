@@ -74,13 +74,19 @@ router.get('/:page_id', async (req, res) => {
         page_id: req.params.page_id
       }
     })
+    const comments = await db.comment.findAll({
+      where: {
+        userId: user.id
+      }
+    })
     // console.log(listing)
     res.render('listings/show', {
       webpage: null,
       message: null,
       errorMsg: null,
       listing,
-      user
+      user,
+      comments
     })
   } catch(err) {
     console.warn(err)
@@ -111,8 +117,6 @@ router.post('/:pageId', async (req, res) => {
       userId: user.id,
       listingId: currentListing.id
     })
-
-    // console.log(comment)
 
     await user.createComment(comment)
     await currentListing.createComment(comment)
