@@ -23,9 +23,9 @@
   --bg-lig-1: #eae7e0;
   --bg-lig-2: #f1f1f1;
   --flr-sell: #ff5555;
-  --flr-buy: #50fa7b;
+  --flr-buy: #40ea6b;
   --flr-trd: #ff79c6;
-  --flr-gb: #8be9fd;
+  --flr-gb: #8be2ea;
   --input-bg: #dfdfdf;
   --btn-bg: #C9C4B2;
 }
@@ -219,6 +219,33 @@ nav > .listing-container {
   padding: .2em 1.2em;
 }
 
+.buying-flair::before {
+  content: 'Buying';
+  width: 15%; height: 10%;
+  background: var(--flr-buy);
+  font-family: 'montserrat alternates';
+  color: #eee;
+  padding: .2em 1.2em;
+}
+
+.trading-flair::before {
+  content: 'Trading';
+  width: 15%; height: 10%;
+  background: var(--flr-trd);
+  font-family: 'montserrat alternates';
+  color: #eee;
+  padding: .2em 1.2em;
+}
+
+.store-flair::before {
+  content: 'Store';
+  width: 15%; height: 10%;
+  background: var(--flr-gb);
+  font-family: 'montserrat alternates';
+  color: #eee;
+  padding: .2em 1.2em;
+}
+
 /* LISTINGS */
 .listings-title {
   display: flex;
@@ -313,7 +340,10 @@ nav > .listing-container {
   gap: 20px;
 }
 
-.listing-display-container .selling-flair::before {
+.listing-display-container .selling-flair::before,
+.listing-display-container .buying-flair::before,
+.listing-display-container .trading-flair::before, 
+.listing-display-container .store-flair::before {
   width: auto; height: 1.2em;
   font-size: 1.3em;
   border-radius: 4px 20px 4px 20px;
@@ -383,7 +413,10 @@ nav > .listing-container {
   margin-left: -240px;
 }
 
-.listing-information .selling-flair::before {
+.listing-information .selling-flair::before,
+.listing-information .buying-flair::before,
+.listing-information .trading-flair::before,
+.listing-information .store-flair::before {
   position: relative;
   border-radius: 5px 30px 5px 30px;
 }
@@ -485,7 +518,7 @@ nav > .listing-container {
   box-shadow: 0 0 12px rgb(90 90 60 / .1);
   border: none;
   outline: none;
-  padding: 10px 0 0 10px;
+  padding: 0 10px;
 }
 
 .message-btn {
@@ -693,7 +726,7 @@ nav > .listing-container {
 
 .profile-account {
   display: flex;
-  justify-content: space-between; align-items: end;
+  justify-content: space-between; align-items: center;
   margin-bottom: 20px;
 }
 
@@ -703,7 +736,7 @@ nav > .listing-container {
   font-size: 1.8em;
   text-align: center;
   border-bottom: 1px solid var(--btn-bg);
-  padding-bottom: 20px;
+  padding: 25px 0;
 }
 
 .edit {

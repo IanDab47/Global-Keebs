@@ -5,6 +5,7 @@ const crypto = require('crypto-js')
 const bcrypt = require('bcrypt')
 const db = require('../models')
 
+// load account page
 router.get('/', (req, res) => {
   const user = res.locals.user
   const message = req.query.message || null
@@ -17,6 +18,7 @@ router.get('/', (req, res) => {
   })
 })
 
+// load edit account page
 router.get('/edit', (req, res) => {
   const user = res.locals.user
 
@@ -28,6 +30,7 @@ router.get('/edit', (req, res) => {
   })
 })
 
+// load page with all comments made
 router.get('/comments', (req, res) => {
 const user = res.locals.user
 
@@ -39,6 +42,7 @@ const user = res.locals.user
   })
 })
 
+// load login page
 router.get('/login', (req, res) => {
   const user = res.locals.user
   const loginStatus = req.query.status || null
@@ -51,6 +55,7 @@ router.get('/login', (req, res) => {
   })
 })
 
+// load signup page
 router.get('/signup', (req, res) => {
   const user = res.locals.user
   const loginStatus = req.query.status || null
@@ -63,11 +68,13 @@ router.get('/signup', (req, res) => {
   })
 })
 
+// load logout page
 router.get('/logout', (req, res) => {
   res.clearCookie('userId')
   res.redirect('/')
 })
 
+// Login to Account
 router.post('/login', async (req, res) => {
   try {
     // Check for user email
@@ -106,6 +113,7 @@ router.post('/login', async (req, res) => {
   }
 })
 
+// Create Account
 router.post('/signup', async (req, res) => {
   try {
     const hashedPass = bcrypt.hashSync(req.body.password, 12)
@@ -133,7 +141,8 @@ router.post('/signup', async (req, res) => {
   }
 })
 
-router.put('/edit', async (req, res) => {
+// Edit user info
+router.put('/', async (req, res) => {
   try {
     const user = res.locals.user
     const newUsername = req.body.name

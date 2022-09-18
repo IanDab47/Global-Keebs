@@ -3,7 +3,17 @@
     <a href="<%= listing.url %>" target="_blank"><h1><%= listing.title %></h1></a>
     <div class="listing-information">
       <!-- <p><%= listing.flair_text %></p> -->
-      <div class="selling-flair"></div>
+      <!-- <div class="selling-flair"></div> -->
+      <% const flair = listing.flair_text %>
+      <% if(flair === 'SELLING') { %>
+        <div class="selling-flair"></div>
+      <% } else if(flair === 'BUYING') { %>
+        <div class="buying-flair"></div>
+      <% } else if(flair === 'TRADING') { %>
+        <div class="trading-flair"></div>
+      <% } else { %>
+        <div class="store-flair"></div>
+      <% } %>
       <p class="listing-author">
         <a href="http://reddit.com/user/<%= listing.author %>" target="_blank">u/<%= listing.author %></a>
       </p>

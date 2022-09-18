@@ -7,13 +7,14 @@ const bcrypt = require('bcrypt')
 const { sequelize } = require('../models')
 const db = require('../models')
 
-const typeArr = ['selling', 'buying', 'stores']
+const typeArr = ['selling', 'buying', 'store']
 
+// load listings page
 router.get('/', async (req, res) => {
   try {
     const user = res.locals.user
     const errorMsg = req.query.error || null
-    const filterType = req.query.filter || 'Selling'
+    const filterType = req.query.filter || ''
     const search = req.query.search || req.body.search || null
     const trueType = typeArr.filter(type => filterType === type)
 
@@ -43,6 +44,7 @@ router.get('/', async (req, res) => {
         listings = await db.listing.findAll()
       }
 
+      // filter by keyword search
       if(search) {
         listings = listings.filter(listing => listing.dataValues.self_text.toLowerCase().includes(search.toLowerCase()))
       }
@@ -63,6 +65,7 @@ router.get('/', async (req, res) => {
   }
 })
 
+// load listing display page
 router.get('/:page_id', async (req, res) => {
   try {
     const user = res.locals.user
@@ -86,9 +89,33 @@ router.get('/:page_id', async (req, res) => {
   }
 })
 
+// post search on listings page
 router.post('/', (req, res) => {
   console.log(req.body)
   res.redirect(`/listings/?search=${req.body.search}`)
+})
+
+router.post('/:pageId', async (req, res) => {
+  try {
+    const user = res.locals.user
+    const page_id = req.params.pageId
+
+    const currentListing = await db.listing.findOne({
+      page_id: page_id
+    })
+    
+    
+
+    console.log(comment)
+
+    await user.createComment(comment)
+    await currentListing.createComment(comment)
+
+    res.redirect(`/listings/${page_id}`)
+  } catch(err) {
+    console.log(err)
+    res.send('server error!')
+  }
 })
 
 module.exports = router

@@ -22,7 +22,16 @@
     <a href="/listings/<%= listing.page_id %>">
       <div>
         <h2 class="listings-title"><%= listing.title %></h2>
-        <div class="selling-flair"></div>
+        <% const flair = listing.flair_text %>
+        <% if(flair === 'SELLING') { %>
+          <div class="selling-flair"></div>
+        <% } else if(flair === 'BUYING') { %>
+          <div class="buying-flair"></div>
+        <% } else if(flair === 'TRADING') { %>
+          <div class="trading-flair"></div>
+        <% } else { %>
+          <div class="store-flair"></div>
+        <% } %>
       </div>
       <p class="listings-author">u/<%= listing.author %></p>
       <div>
