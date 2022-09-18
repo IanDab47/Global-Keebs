@@ -46,15 +46,15 @@ const filterSelfText = (self_text) => {
     // console.log(parenTextArr)
   }
   self_text = self_text.replace(/\(\)/g, "")
-  console.log('------------ ALL LISITNG --------------')
+  // console.log('------------ ALL LISITNG --------------')
 
-  console.log(self_text)
+  // console.log(self_text)
   console.log('------------ NEW LISITNG --------------')
 }
 
 const createListing = async (listing) => {
   try {
-    console.log(listing.id)
+    // console.log(listing.id)
 
     // grab immediate values
     const author = listing.author
@@ -115,7 +115,25 @@ const createListing = async (listing) => {
       }
     })
 
-    // console.log(created)
+    if(!created) {
+      await db.listing.update({
+        author: author,
+        author_ref: author_ref,
+        downs: downs,
+        self_text: self_text,
+        timestamp: timestamp,
+        title: title,
+        ups: ups,
+        upvote_ratio: upvote_ratio,
+        url: url
+      },
+      {
+        where: {
+          page_id: page_id
+        }
+      })
+      console.log('updated!')
+    }
   
     return created
     // const someText = [
@@ -148,7 +166,7 @@ const addListings = async (url) => {
           if(listing.data.link_flair_text !== null || listing.data.link_flair_text !== undefined) {
             newListing = await createListing(listing.data)
           }
-          if(newListing) {
+          // if(newListing) {
             // check for final possible listing
             if(index === response.data.data.dist - 1 && response.data.data.after === null || listings.length === 1000) {
             // if(index === response.data.data.dist - 1) {
@@ -171,7 +189,7 @@ const addListings = async (url) => {
               console.log(response.data.data.after, listings.length)
               return await addListings(url)
             }
-          }
+          // }
         } catch(err) {
           console.log(err)
         }

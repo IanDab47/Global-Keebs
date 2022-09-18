@@ -99,14 +99,20 @@ router.post('/:pageId', async (req, res) => {
   try {
     const user = res.locals.user
     const page_id = req.params.pageId
-
+    
     const currentListing = await db.listing.findOne({
-      page_id: page_id
+      where: {
+        page_id: page_id
+      }
     })
     
-    
+    const comment = await db.comment.create({
+      comment: req.body.comment,
+      userId: user.id,
+      listingId: currentListing.id
+    })
 
-    console.log(comment)
+    // console.log(comment)
 
     await user.createComment(comment)
     await currentListing.createComment(comment)
