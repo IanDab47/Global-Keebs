@@ -6,9 +6,28 @@ const bcrypt = require('bcrypt')
 const db = require('../models')
 
 router.get('/', (req, res) => {
-  const user = res.locals.user
+  const user = req.locals.user
+  const message = req.query.message || null
 
   res.render('user/show', {
+    webpage: user.username,
+    message: message,
+    errorMsg: null,
+    user
+  })
+})
+
+router.get('/edit', (req, res) => {
+  res.render('user/edit', {
+    webpage: user.username,
+    message: null,
+    errorMsg: null,
+    user
+  })
+})
+
+router.get('/comments', (req, res) => {
+  res.render('user/edit', {
     webpage: user.username,
     message: null,
     errorMsg: null,
@@ -107,6 +126,24 @@ router.post('/signup', async (req, res) => {
   } catch(err) {
     console.log(err)
     res.send('server error!')
+  }
+})
+
+router.put('/edit', async (req, res) => {
+  try {
+    const user = req.locals.user
+    const newUsername = req.body.name
+    const newEmail = req.body.email
+    
+    user.username = newUsername
+    user.newEmail = newEmail
+
+    const editComplete = `Your account has been edited successfully`
+    res.redirect(`/user/?message=${editComplete}`)
+  } catch(err) {
+    console.log(err)
+    const errorMsg = 'Something went wrong. Returning back here for safety'
+    res.redirect(`/?error=${errorMsg}`)
   }
 })
 

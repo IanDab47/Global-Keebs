@@ -12,9 +12,8 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 ## User Stories
 - As a user, I want to view all the newest listings for mechanical keyboards
 - As a user, I only care about group buys and I want to see the ongoing listings
-- As a user, I would like to save a listing that I like for future referencef
+- As a user, I would like to save a listing that I like for future reference
 - As a user, I would like to request to purchase keyboard products I see on the site
-- As a user, I would like to post a listing to sell my products
 
 ## Tech Stack
 - HTML5

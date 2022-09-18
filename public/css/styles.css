@@ -674,13 +674,13 @@ nav > .listing-container {
 .profile-display {
   width: calc(100vw - 15em);
   font-family: montserrat;
-  font-size: 1.5em;
+  font-size: 1.3em;
   padding: 20px 40px;
 }
 
 .profile-display *:not(
   :first-child, .profile-account *) {
-  line-height: 1.5em;
+  line-height: 1.8em;
   padding-left: 20px;
 }
 
@@ -694,6 +694,7 @@ nav > .listing-container {
 .profile-account {
   display: flex;
   justify-content: space-between; align-items: end;
+  margin-bottom: 20px;
 }
 
 .profile-account p {
