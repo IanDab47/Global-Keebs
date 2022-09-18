@@ -6,9 +6,9 @@ const bcrypt = require('bcrypt')
 const db = require('../models')
 
 router.get('/', (req, res) => {
-  const user = req.locals.user
+  const user = res.locals.user
   const message = req.query.message || null
-
+  
   res.render('user/show', {
     webpage: user.username,
     message: message,
@@ -18,6 +18,8 @@ router.get('/', (req, res) => {
 })
 
 router.get('/edit', (req, res) => {
+  const user = res.locals.user
+
   res.render('user/edit', {
     webpage: user.username,
     message: null,
@@ -27,6 +29,8 @@ router.get('/edit', (req, res) => {
 })
 
 router.get('/comments', (req, res) => {
+const user = res.locals.user
+
   res.render('user/edit', {
     webpage: user.username,
     message: null,
@@ -131,7 +135,7 @@ router.post('/signup', async (req, res) => {
 
 router.put('/edit', async (req, res) => {
   try {
-    const user = req.locals.user
+    const user = res.locals.user
     const newUsername = req.body.name
     const newEmail = req.body.email
     

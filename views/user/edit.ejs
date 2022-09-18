@@ -1,0 +1,27 @@
+<div class="profile-container">
+  <nav class="profile-nav">
+    <div>
+      <p class="profile-list">Account</p>
+      <p class="profile-list">Comments</p>
+    </div>
+    <div class="profile-list log-out">
+      <a href="/user/logout">Logout</a>
+    </div>
+  </nav>
+
+  <main class="profile-display">
+    <div class="profile-account">
+      <p>Account Info</p>
+      <a href="/user">Cancel</a>
+    </div>
+
+    <form action="/user/edit?_method=PUT" method="POST">
+      <label for="name">Username:</label>
+      <input type="text" class="login-input edit" id="name" name="name" value="<%= user.username %>">
+      <label for="email">Email:</label>
+      <input type="text" class="login-input edit" id="email" name="email" value="<%= user.email %>">
+
+      <button type="submit" class="btn edit-btn">Change</button>
+    </form>
+  </main>
+</div>

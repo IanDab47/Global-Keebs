@@ -698,11 +698,25 @@ nav > .listing-container {
 }
 
 .profile-account p {
+  display: block;
   width: 8em;
   font-size: 1.8em;
   text-align: center;
   border-bottom: 1px solid var(--btn-bg);
   padding-bottom: 20px;
+}
+
+.edit {
+  display: block;
+  width: 60%;
+  margin-bottom: 20px;
+}
+
+.edit-btn {
+  background: var(--btn-bg);
+  font-family: 'montserrat alternates';
+  font-size: .8em; font-style: italic;
+  color: var(--bg-lig-2)
 }
 
 @keyframes drop-down-message {
