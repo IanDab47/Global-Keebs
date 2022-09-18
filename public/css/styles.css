@@ -672,7 +672,36 @@ nav > .listing-container {
 }
 
 .profile-display {
-  padding: 20px;
+  width: calc(100vw - 15em);
+  font-family: montserrat;
+  font-size: 1.5em;
+  padding: 20px 40px;
+}
+
+.profile-display *:not(
+  :first-child, .profile-account *) {
+  line-height: 1.5em;
+  padding-left: 20px;
+}
+
+.profile-display a {
+  font-family: lato;
+  font-size: .8rem;
+  color: var(--btn-bg);
+  text-decoration: underline;
+}
+
+.profile-account {
+  display: flex;
+  justify-content: space-between; align-items: end;
+}
+
+.profile-account p {
+  width: 8em;
+  font-size: 1.8em;
+  text-align: center;
+  border-bottom: 1px solid var(--btn-bg);
+  padding-bottom: 20px;
 }
 
 @keyframes drop-down-message {
