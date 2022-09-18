@@ -484,6 +484,7 @@ nav > .listing-container {
   font-size: 1em; font-weight: 400;
   box-shadow: 0 0 12px rgb(90 90 60 / .1);
   border: none;
+  outline: none;
   padding: 10px 0 0 10px;
 }
 
@@ -594,7 +595,7 @@ nav > .listing-container {
 }
 
 .login-input:is(:hover, :focus-within) {
-  box-shadow: 0 0 10px rgb(214 40 40 / .3);
+  box-shadow: 0 0 10px rgb(60 60 30 / .3);
   transition: 120ms ease-out;
 }
 
@@ -615,6 +616,63 @@ nav > .listing-container {
   color: steelblue;
   text-decoration: underline;
   margin: 0;
+}
+
+/* USER */
+.profile-container {
+  display: flex;
+  width: 100vw; height: 90vh;
+}
+
+.profile-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 15em; height: 90vh;
+  text-align: center;
+  background: var(--nav-bg-1);
+  z-index: -1;
+}
+
+.profile-nav::before {
+  content: 'asdfasdfasdf';
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 13em; height: 0;
+  color: transparent;
+  border-bottom: 10px solid var(--nav-act-1);
+  padding: 0 1em;
+}
+
+.profile-list {
+  position: relative;
+  width: 13em;
+  font-family: montserrat;
+  font-size: 1em;
+  border-bottom: 1px solid var(--btn-bg);
+  padding: 2em 0;
+  margin: 0 1em;
+}
+
+.profile-list:first-child {
+  border-top: 1px solid var(--btn-bg);
+  margin-top: 30px;
+}
+
+.profile-list:is(:hover, :focus-within){
+  background: var(--nav-act-1);
+  color: var(--nav-act-1);
+}
+
+.log-out {
+  color: var(--nav-act-1);
+  border-top: 1px solid var(--btn-bg);
+  margin-bottom: 20px;
+}
+
+.profile-display {
+  padding: 20px;
 }
 
 @keyframes drop-down-message {

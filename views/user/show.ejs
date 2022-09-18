@@ -1,0 +1,18 @@
+<div class="profile-container">
+  <nav class="profile-nav">
+    <div>
+      <p class="profile-list">Account</p>
+      <p class="profile-list">Comments</p>
+    </div>
+    <div class="profile-list log-out">
+      <a href="/user/logout">Logout</a>
+    </div>
+  </nav>
+
+  <main class="profile-display">
+    <h2>Account Info</h2>
+    <a href="/user/edit">Edit Account</a>
+    <p>Username: <%= user.username %></p>
+    <p>Email: <%= user.email %></p>
+  </main>
+</div>
