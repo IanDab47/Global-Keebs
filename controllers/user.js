@@ -139,8 +139,15 @@ router.put('/edit', async (req, res) => {
     const newUsername = req.body.name
     const newEmail = req.body.email
     
-    user.username = newUsername
-    user.newEmail = newEmail
+    await db.user.udpate({
+      username: newUsername,
+      email: newEmail
+    },
+    {
+      where: {
+        id: user.id
+      }
+    })
 
     const editComplete = `Your account has been edited successfully`
     res.redirect(`/user/?message=${editComplete}`)

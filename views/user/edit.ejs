@@ -15,7 +15,7 @@
       <a href="/user">Cancel</a>
     </div>
 
-    <form action="/user/edit?_method=PUT" method="POST">
+    <form action="/user/edit/?_method=PUT" method="POST">
       <label for="name">Username:</label>
       <input type="text" class="login-input edit" id="name" name="name" value="<%= user.username %>">
       <label for="email">Email:</label>
