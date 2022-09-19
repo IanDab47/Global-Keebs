@@ -753,12 +753,12 @@ nav > .listing-container {
 }
 
 .profile-display *:not(
-  :first-child, .profile-account *) {
+  :first-child, .profile-account *, .profile-content *:not(.profile-comment)) {
   line-height: 1.8em;
-  padding-left: 20px;
+  padding: 0 20px;
 }
 
-.profile-account a, .profile-account p:not(.profile-title) {
+.profile-account a, .profile-account p:not(.profile-title, .content) {
   font-family: lato;
   font-size: .8rem;
   color: var(--btn-bg);
@@ -778,6 +778,26 @@ nav > .listing-container {
   text-align: center;
   border-bottom: 1px solid var(--btn-bg);
   padding: 25px 0;
+}
+
+.comment-title:hover {
+  text-decoration: underline;
+}
+
+.comment-author {
+  font-size: 1rem;
+  color: rgb(160 160 160);
+  font-style: italic;
+  margin-top: -.8em;
+}
+
+.profile-comment {
+  background: var(--input-bg);
+  font-family: lato;
+  font-size: 1em; font-weight: 300;
+  border-radius: 0 8px 0 8px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 .edit {

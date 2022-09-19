@@ -9,7 +9,13 @@
 
     <section class="profile-content">
       <% comments.forEach(comment => { %>
-        <p><a href="/listings/<%= comment.listings.map(listing => listing.page_id) %>"><%= comment.comment %></a></p>
+        <% comment.listings.map(listing => { %>
+          <p class="comment-title">
+            <a href="/listings/<%= comment.listings.map(listing => listing.page_id) %>"><%= listing.title %></a>
+          </p>
+          <p class="comment-author">u/<%= listing.author %></p>
+        <% }) %> 
+        <p class="profile-comment"><%= user.username %>: <%= comment.comment %></p>
       <% }) %>
     </section>
   </main>
