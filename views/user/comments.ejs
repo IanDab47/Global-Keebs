@@ -10,12 +10,12 @@
     <section class="profile-content">
       <% comments.forEach(comment => { %>
         <% comment.listings.map(listing => { %>
-          <p class="comment-title">
+          <p class="content-title">
             <a href="/listings/<%= comment.listings.map(listing => listing.page_id) %>"><%= listing.title %></a>
           </p>
-          <p class="comment-author">u/<%= listing.author %></p>
+          <p class="content-author">u/<%= listing.author %></p>
         <% }) %> 
-        <p class="profile-comment"><%= user.username %>: <%= comment.comment %></p>
+        <p class="content-comment"><%= user.username %>: <%= comment.comment %></p>
       <% }) %>
     </section>
   </main>

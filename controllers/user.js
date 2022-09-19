@@ -63,14 +63,25 @@ router.get('/comments', async (req, res) => {
     include: [db.listing]
   })
 
-  console.log(comments)
-
   res.render('user/comments', {
     webpage: user.username,
     message: null,
     errorMsg: null,
     user,
     comments
+  })
+})
+
+router.get('/favorites', async (req, res) => {
+  const user = res.locals.user
+  const favorites = null
+
+  res.render('user/favorites', {
+    webpage: user.username,
+    message: null,
+    errorMsg: null,
+    user,
+    favorites
   })
 })
 

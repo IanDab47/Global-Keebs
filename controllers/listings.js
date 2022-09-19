@@ -140,6 +140,26 @@ router.post('/:pageId', async (req, res) => {
   }
 })
 
+router.post('/:pageId/favorite', async (req, res) => {
+  try {
+    const listing = db.listing.findOne({
+      where: {
+        page_id: req.params.pageId
+      }
+    })
+    const user = db.user.findOne({
+      id: res.locals.user.id
+    })
+    
+    listing.addUser(user)
+    
+    res.redirect(`/${page_id}`)
+  } catch(err) {
+    console.log(err)
+    res.send(`ERROR: ${err}`)
+  }
+})
+
 router.delete('/:pageId/delete', async (req, res) => {
   try {
     const pageId = req.params.pageId

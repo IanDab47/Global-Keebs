@@ -1,9 +1,8 @@
 <div class='listing-container'>
+  <!-- All header contents -->
   <header class="listing-header">
     <a href="<%= listing.url %>" target="_blank"><h1><%= listing.title %></h1></a>
     <div class="listing-information">
-      <!-- <p><%= listing.flair_text %></p> -->
-      <!-- <div class="selling-flair"></div> -->
       <% const flair = listing.flair_text %>
       <% if(flair === 'SELLING') { %>
         <div class="selling-flair"></div>
@@ -22,6 +21,7 @@
     </div>
   </header>
 
+  <!-- All Timestamp Contents -->
    <% if(listing.timestamp !== '') { %>
     <section class="timestamp-display">
       <div class="timestamp-title">
@@ -34,6 +34,7 @@
     </section>
   <% } %>
 
+  <!-- All listing details -->
   <section class="selftext-display">
     <div class="selftext-title">
       <h2>Listing Details</h2>
@@ -44,12 +45,14 @@
     </div>
   </section>
 
+  <!-- All comments -->
   <% if(user) { %>
     <section class="comments-section">
       <header class="comments-header">
         <p>Comments</p>
       </header>
 
+      <!-- Display all comments that exist -->
       <% if(comments) { %>
         <section class="comments-display">
         <% comments.forEach(item => { %>
@@ -62,6 +65,7 @@
         </section>
       <% } %>
 
+      <!-- Display input for comments -->
       <form action="/listings/<%= listing.page_id %>" method="POST">
         <label for="comment">Message u/<%= listing.author %> for further information</label>
         <textarea id="comment" name="comment" class="comment-input"></textarea> 

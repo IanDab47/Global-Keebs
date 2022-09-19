@@ -22,6 +22,7 @@
   --nav-act-2: #df3838;
   --bg-lig-1: #eae7e0;
   --bg-lig-2: #f1f1f1;
+  --bg-med-1: #a0a0a0;
   --flr-sell: #ff5555;
   --flr-buy: #40e47b;
   --flr-trd: #ff79c6;
@@ -753,12 +754,12 @@ nav > .listing-container {
 }
 
 .profile-display *:not(
-  :first-child, .profile-account *, .profile-content *:not(.profile-comment)) {
+  :first-child, .profile-account *, .profile-content *:not(.content-comment)) {
   line-height: 1.8em;
   padding: 0 20px;
 }
 
-.profile-account a, .profile-account p:not(.profile-title, .content) {
+.profile-account a, .profile-account p:not(.profile-title) {
   font-family: lato;
   font-size: .8rem;
   color: var(--btn-bg);
@@ -780,18 +781,18 @@ nav > .listing-container {
   padding: 25px 0;
 }
 
-.comment-title:hover {
+.content-title:hover {
   text-decoration: underline;
 }
 
-.comment-author {
+.content-author {
   font-size: 1rem;
-  color: rgb(160 160 160);
+  color: var(--bg-med-1);
   font-style: italic;
   margin-top: -.8em;
 }
 
-.profile-comment {
+.content-comment {
   background: var(--input-bg);
   font-family: lato;
   font-size: 1em; font-weight: 300;
