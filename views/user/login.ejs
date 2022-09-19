@@ -6,14 +6,16 @@
     
     <div class="login-information">
       <form action="/user/login" method="POST">
-        <p class="login-instruction">Login with your Account</p>
-
+        <div>
+          <p class="login-instruction">Login with your Account</p>
+          <% if(loginStatus) { %>
+            <p class="login-error"><%= loginStatus %></p>
+          <% } %>
+        </div>
+        
         <div class="user-entry">
           <label for="name">Enter your Username or Email</label>
           <input type="string" class="login-input" id="name" name="name">
-          <% if(message) { %>
-            <p class="login-error"><%= message %></p>
-          <% } %>
         </div>
 
         <div class="user-entry">

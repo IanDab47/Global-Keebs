@@ -19,8 +19,6 @@ router.get('/', async (req, res) => {
     const search = req.query.search || req.body.search || null
     const trueType = typeArr.filter(type => filterType === type)
 
-    console.log(req.body)
-
     // console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
     
     if(filterType !== null && !trueType) { // Check for bad filter type
