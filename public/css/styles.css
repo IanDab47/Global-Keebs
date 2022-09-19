@@ -758,7 +758,7 @@ nav > .listing-container {
   padding-left: 20px;
 }
 
-.profile-display a, .profile-account p:not(.profile-title) {
+.profile-account a, .profile-account p:not(.profile-title) {
   font-family: lato;
   font-size: .8rem;
   color: var(--btn-bg);

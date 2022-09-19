@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   try {
     const user = res.locals.user
     const errorMsg = req.query.error || null
-    const filterType = req.query.filter || ''
+    let filterType = req.query.filter || ''
     const tradeTrue = req.body.trade || null
     const search = req.query.search || req.body.search || null
     const trueType = typeArr.filter(type => filterType === type)
@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
       let listings = null
       // Check for filter settings
       if(filterType) {
+        filterType = functions.capFirstLetter(filterType)
         if(tradeTrue) {
           listings = await db.listing.findAll({
             where: {
@@ -62,7 +63,7 @@ router.get('/', async (req, res) => {
       }
 
       res.render('listings/list', {
-        webpage: 'listings',
+        webpage: filterType,
         message: null,
         errorMsg,
         listings,
@@ -94,7 +95,7 @@ router.get('/:page_id', async (req, res) => {
     })
     // console.log(listing)
     res.render('listings/show', {
-      webpage: null,
+      webpage: listing.title,
       message: null,
       errorMsg: null,
       listing,
@@ -118,7 +119,6 @@ router.post('/:pageId', async (req, res) => {
   try {
     const user = res.locals.user
     const page_id = req.params.pageId
-    
     const currentListing = await db.listing.findOne({
       where: {
         page_id: page_id
@@ -130,9 +130,6 @@ router.post('/:pageId', async (req, res) => {
       userId: user.id,
       listingId: currentListing.id
     })
-
-    console.log(comment)
-
     await user.addComment(comment)
     await currentListing.addComment(comment)
 
