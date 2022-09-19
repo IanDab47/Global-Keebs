@@ -1,20 +1,19 @@
 <div class="profile-container">
   
-  <%- include('./partials/acct-nav.ejs') %>
+  <%- include('../partials/acct-nav.ejs') %>
 
   <main class="profile-display">
     <div class="profile-account">
-      <p>Account Info</p>
-      <a href="/user">Cancel</a>
+      <p>Comments</p>
     </div>
 
-    <form action="/user/?_method=PUT" method="POST">
+    <!-- <form action="/user/?_method=PUT" method="POST">
       <label for="name">Username:</label>
       <input type="text" class="login-input edit" id="name" name="name" value="<%= user.username %>">
       <label for="email">Email:</label>
       <input type="text" class="login-input edit" id="email" name="email" value="<%= user.email %>">
 
       <button type="submit" class="btn edit-btn">Change</button>
-    </form>
+    </form> -->
   </main>
 </div>

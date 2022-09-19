@@ -23,9 +23,9 @@
   --bg-lig-1: #eae7e0;
   --bg-lig-2: #f1f1f1;
   --flr-sell: #ff5555;
-  --flr-buy: #40ea6b;
+  --flr-buy: #40e47b;
   --flr-trd: #ff79c6;
-  --flr-gb: #8be2ea;
+  --flr-gb: #82dae2;
   --input-bg: #dfdfdf;
   --btn-bg: #C9C4B2;
 }
@@ -84,7 +84,6 @@ a {
 }
 
 .nav-container {
-  /* position: relative; */
   display: flex;
   justify-content: space-between;
   overflow: hidden;
@@ -356,7 +355,7 @@ nav > .listing-container {
 .listing-header {
   display: flex;
   justify-content: space-between;
-  width: 100vw;
+  max-width: 100vw;
   min-width: 400px;
   /* max-height: 25em; */
   background: linear-gradient(
@@ -374,7 +373,7 @@ nav > .listing-container {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  width: 80%; 
+  max-width: 67%; 
   /* max-height: 3.9em; */
   overflow: hidden;
   font-family: montserrat;
@@ -390,7 +389,7 @@ nav > .listing-container {
 
 .date {
   white-space: nowrap;
-  translate: -50%;
+  /* translate: -50%; */
 }
 
 .listing-information {
@@ -398,7 +397,7 @@ nav > .listing-container {
   flex-direction: column;
   /* justify-content: space-evenly; */
   /* gap: 10px; */
-  width: 33%;
+  max-width: 33%;
   background: linear-gradient(
     270deg,
     rgb(100 0 0 / .2),
@@ -410,9 +409,9 @@ nav > .listing-container {
   color: var(--bg-lig-2);
   text-align: right;
   padding: 80px;
-  padding-left: 240px;
+  /* padding-left: 240px; */
   margin: -80px;
-  margin-left: -240px;
+  /* margin-left: -240px; */
 }
 
 .listing-information .selling-flair::before,
@@ -424,8 +423,7 @@ nav > .listing-container {
 }
 
 .listing-information .listing-author {
-  padding: 15px 0;
-  padding-bottom: 0;
+  padding-top: 15px;
 }
 
 .timestamp-display {
@@ -488,7 +486,8 @@ nav > .listing-container {
   padding: 60px;
 }
 
-.comments-section *:not(.comments-header, button) {
+.comments-section *:not(
+  .comments-header, .comments-display, .comments-display p a, button) {
   display: block;
   padding: 20px 10px;
 }
@@ -509,6 +508,24 @@ nav > .listing-container {
 
 .comments-section label {
   font-size: 1.3em; font-weight: 300;
+}
+/* 
+.comments-display {
+  display: block;
+} */
+
+.comments-display p a {
+  color: var(--btn-bg);
+  text-decoration: underline;
+}
+
+.comments-display button {
+  position: absolute;
+  font-family: 'montserrat alternates';
+  font-size: .9em;
+  color: var(--bg-lig-2);
+  background-color: var(--nav-act-1);
+  translate: 0% -100%;
 }
 
 .comment-input {
@@ -657,6 +674,7 @@ nav > .listing-container {
 .profile-container {
   display: flex;
   width: 100vw; height: 90vh;
+  /* user-select: none; */
 }
 
 .profile-nav {
@@ -666,11 +684,12 @@ nav > .listing-container {
   width: 15em; height: 90vh;
   text-align: center;
   background: var(--nav-bg-1);
-  z-index: -1;
+  isolation: isolate;
+  /* z-index: -1; */
 }
 
 .profile-nav::before {
-  content: 'asdfasdfasdf';
+  content: '';
   position: absolute;
   display: flex;
   justify-content: center;
@@ -688,6 +707,8 @@ nav > .listing-container {
   border-bottom: 1px solid var(--btn-bg);
   padding: 2em 0;
   margin: 0 1em;
+
+  transition: all 120ms ease-in;
 }
 
 .profile-list:first-child {
@@ -696,12 +717,20 @@ nav > .listing-container {
 }
 
 .profile-list:is(:hover, :focus-within){
-  background: var(--nav-act-1);
-  color: var(--nav-act-1);
+  background: var(--nav-brd-1);
+  text-decoration: underline;
+  cursor: pointer;
+
+  transition: all 200ms ease-in;
+}
+
+.current {
+  background: var(--nav-brd-1);
 }
 
 .log-out {
   color: var(--nav-act-1);
+  text-decoration: underline;
   border-top: 1px solid var(--btn-bg);
   margin-bottom: 20px;
 }

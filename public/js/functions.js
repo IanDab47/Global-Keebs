@@ -49,7 +49,7 @@ const filterSelfText = (self_text) => {
   // console.log('------------ ALL LISITNG --------------')
 
   // console.log(self_text)
-  console.log('------------ NEW LISITNG --------------')
+  // console.log('------------ NEW LISITNG --------------')
 }
 
 const createListing = async (listing) => {
@@ -88,7 +88,7 @@ const createListing = async (listing) => {
     let timestamp = ''
     const listingText = re_imgur.exec(self_text) || ['ha', '']
     // console.log(listingText)
-    filterSelfText(self_text)
+    // filterSelfText(self_text)
     // console.log('------ NEW LISTING ------')
     listingText[1].includes('imgur') ? timestamp = listingText[1] : timestamp = ''
   
@@ -132,7 +132,7 @@ const createListing = async (listing) => {
           page_id: page_id
         }
       })
-      console.log('updated!')
+      // console.log('updated!')
     }
   
     return created

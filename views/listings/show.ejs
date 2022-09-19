@@ -53,8 +53,9 @@
       <% if(comments) { %>
         <section class="comments-display">
         <% comments.forEach(item => { %>
-          <p><%= item.comment %></p>
-          <form action="/listings/<%= listing.page_id %>/?_method=DELETE" method="POST">
+          <p><%= item.comment %> | <a href="/listings/<%= listing.page_id %>/edit">Edit Comment</a></p>
+          <form method="POST", action="/listings/<%= listing.page_id %>/delete/?_method=DELETE">
+            <input type="hidden" name="comment" value="<%= item.id %>">
             <button type="submit" class="btn delete-btn">Delete</button>
           </form>
           <% }) %>

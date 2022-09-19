@@ -15,8 +15,11 @@ router.get('/', async (req, res) => {
     const user = res.locals.user
     const errorMsg = req.query.error || null
     const filterType = req.query.filter || ''
+    const tradeTrue = req.body.trade || null
     const search = req.query.search || req.body.search || null
     const trueType = typeArr.filter(type => filterType === type)
+
+    console.log(req.body)
 
     // console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
     
@@ -32,14 +35,25 @@ router.get('/', async (req, res) => {
       let listings = null
       // Check for filter settings
       if(filterType) {
-        listings = await db.listing.findAll({
-          where: {
-            flair_text: filterType.toUpperCase()
-          },
-          order: [
-            [sequelize.col('created_utc'), 'DESC']
-          ]
-        })
+        if(tradeTrue) {
+          listings = await db.listing.findAll({
+            where: {
+              flair_text: filterType.toUpperCase() || 'TRADING'
+            },
+            order: [
+              [sequelize.col('created_utc'), 'DESC']
+            ]
+          })
+        } else {
+          listings = await db.listing.findAll({
+            where: {
+              flair_text: filterType.toUpperCase()
+            },
+            order: [
+              [sequelize.col('created_utc'), 'DESC']
+            ]
+          })
+        }
       } else {
         listings = await db.listing.findAll()
       }
@@ -125,6 +139,32 @@ router.post('/:pageId', async (req, res) => {
   } catch(err) {
     console.log(err)
     res.send('server error!')
+  }
+})
+
+router.delete('/:pageId/delete', async (req, res) => {
+  try {
+    const pageId = req.params.pageId
+    const commentId = req.body.comment
+
+    console.log(pageId)
+    console.log(req.body)
+
+    const currentListing = await db.listing.findOne({
+      where: {
+        page_id: pageId
+      }
+    })
+
+    await db.comment.destroy({
+      where: {
+        id: commentId
+      }
+    })
+
+    res.redirect(`/listings/${pageId}`)
+  } catch(err) {
+    console.log(err)
   }
 })
 

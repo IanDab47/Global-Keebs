@@ -32,9 +32,17 @@ router.get('/edit', (req, res) => {
 
 // load page with all comments made
 router.get('/comments', (req, res) => {
-const user = res.locals.user
+  const user = res.locals.user
+  const comments = db.comment.findAll({
+    where: {
+      userId: user.id
+    },
+    include: [db.listing]
+  })
 
-  res.render('user/edit', {
+  console.log(comments[0])
+
+  res.render('user/comments', {
     webpage: user.username,
     message: null,
     errorMsg: null,
@@ -148,7 +156,7 @@ router.put('/', async (req, res) => {
     const newUsername = req.body.name
     const newEmail = req.body.email
     
-    await db.user.udpate({
+    await db.user.update({
       username: newUsername,
       email: newEmail
     },
