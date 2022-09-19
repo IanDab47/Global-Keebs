@@ -131,8 +131,10 @@ router.post('/:pageId', async (req, res) => {
       listingId: currentListing.id
     })
 
-    await user.createComment(comment)
-    await currentListing.createComment(comment)
+    console.log(comment)
+
+    await user.addComment(comment)
+    await currentListing.addComment(comment)
 
     res.redirect(`/listings/${page_id}`)
   } catch(err) {

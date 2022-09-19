@@ -8,8 +8,9 @@
     </div>
 
     <section class="profile-content">
-      <% comments.forEach(comment => { %>
-        <p><a href="/listings/<%= comment.listings.map(listing => listing.page_id) %>"><%= comment.comment %></a></p>
+      <% favorites.forEach(favorite => { %>
+        <p><a href="/listings/<%= favorite.page_id) %>"><%= favorite.title %></a></p>
+        <p>Posted by - u/<%= favorite.author %></p>
       <% }) %>
     </section>
   </main>

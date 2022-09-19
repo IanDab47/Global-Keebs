@@ -60,7 +60,7 @@ router.get('/comments', async (req, res) => {
     where: {
       userId: user.id
     },
-    // include: [db.listing]
+    include: [db.listing]
   })
 
   console.log(comments)
@@ -69,7 +69,8 @@ router.get('/comments', async (req, res) => {
     webpage: user.username,
     message: null,
     errorMsg: null,
-    user
+    user,
+    comments
   })
 })
 
