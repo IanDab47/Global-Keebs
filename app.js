@@ -11,7 +11,7 @@ const db = require('./models')
 
 // Express variables go here
 const app = express()
-const HOST = process.env.HOST
+const HOST = process.env.HOST || 'localhost'
 const PORT = process.env.PORT
 
 // Express middleware go here
@@ -72,6 +72,6 @@ app.use('/user', require('./controllers/user'))
 app.use('/listings', require('./controllers/listings'))
 
 // listen on port #----
-app.listen(PORT, HOST, () => {
+app.listen(PORT, () => {
   console.log(`${HOST} has entered financial discomfort in port ${PORT}`)
 })
