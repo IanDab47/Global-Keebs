@@ -2,10 +2,16 @@
   
   <%- include('../partials/acct-nav.ejs') %>
 
+  <div id="delete-account" class="modal">
+    <div class="modal-prompt">
+
+    </div>
+  </div>
+
   <main class="profile-display">
     <div class="profile-account">
-      <p>Account Info</p>
-      <a href="/user/edit">Edit Account</a>
+      <p class="profile-title">Account Info</p>
+      <p><a href="/user/edit">Edit Account</a> | <p onclick="showModal">Delete Account</a></p>
     </div>
     <p>Username: <%= user.username %></p>
     <p>Email: <%= user.email %></p>

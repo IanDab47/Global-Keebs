@@ -678,6 +678,7 @@ nav > .listing-container {
 }
 
 .profile-nav {
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -699,8 +700,13 @@ nav > .listing-container {
   padding: 0 1em;
 }
 
+.profile-display {
+  margin-left: 12em;
+}
+
 .profile-list {
   position: relative;
+  display: block;
   width: 13em;
   font-family: montserrat;
   font-size: 1em;
@@ -708,7 +714,7 @@ nav > .listing-container {
   padding: 2em 0;
   margin: 0 1em;
 
-  transition: all 120ms ease-in;
+  transition: all 80ms ease-in 40ms;
 }
 
 .profile-list:first-child {
@@ -721,11 +727,7 @@ nav > .listing-container {
   text-decoration: underline;
   cursor: pointer;
 
-  transition: all 200ms ease-in;
-}
-
-.current {
-  background: var(--nav-brd-1);
+  transition: all 120ms ease-in;
 }
 
 .log-out {
@@ -748,7 +750,7 @@ nav > .listing-container {
   padding-left: 20px;
 }
 
-.profile-display a {
+.profile-display a, .profile-account p:not(.profile-title) {
   font-family: lato;
   font-size: .8rem;
   color: var(--btn-bg);
@@ -761,7 +763,7 @@ nav > .listing-container {
   margin-bottom: 20px;
 }
 
-.profile-account p {
+.profile-title {
   display: block;
   width: 8em;
   font-size: 1.8em;
