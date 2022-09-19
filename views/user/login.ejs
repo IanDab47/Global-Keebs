@@ -6,12 +6,12 @@
     
     <div class="login-information">
       <form action="/user/login" method="POST">
-        <div>
+        <header class="login-header">
           <p class="login-instruction">Login with your Account</p>
           <% if(loginStatus) { %>
             <p class="login-error"><%= loginStatus %></p>
           <% } %>
-        </div>
+        </header>
         
         <div class="user-entry">
           <label for="name">Enter your Username or Email</label>

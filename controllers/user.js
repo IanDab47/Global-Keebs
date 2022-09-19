@@ -54,16 +54,16 @@ router.get('/delete', async (req, res) => {
 })
 
 // load page with all comments made
-router.get('/comments', (req, res) => {
+router.get('/comments', async (req, res) => {
   const user = res.locals.user
-  const comments = db.comment.findAll({
+  const comments = await db.comment.findAll({
     where: {
       userId: user.id
     },
-    include: [db.listing]
+    // include: [db.listing]
   })
 
-  console.log(comments[0])
+  console.log(comments)
 
   res.render('user/comments', {
     webpage: user.username,

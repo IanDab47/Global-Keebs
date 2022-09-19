@@ -88,7 +88,8 @@ router.get('/:page_id', async (req, res) => {
     })
     const comments = await db.comment.findAll({
       where: {
-        userId: user.id
+        userId: user.id,
+        listingId: listing.id
       }
     })
     // console.log(listing)

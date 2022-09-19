@@ -4,11 +4,13 @@
 
   <main class="profile-display">
     <div class="profile-account">
-      <p>Comments</p>
+      <p class="profile-title">Comments</p>
     </div>
 
-    <section>
-      
+    <section class="profile-comments">
+      <% comments.forEach(comment => { %>
+        <p><%= comment %></p>
+      <% }) %>
     </section>
   </main>
 </div>

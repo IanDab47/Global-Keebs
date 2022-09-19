@@ -364,6 +364,7 @@ nav > .listing-container {
   );
   text-align: left;
   padding: 80px;
+  overflow-x: hidden;
   z-index: -10;
 
   transition: all 240ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -600,9 +601,9 @@ nav > .listing-container {
   margin: 0 10%;
 }
 
-/* .login-information *:not(div:not(.user-entry)) {
+.login-information *:not(header, header *) {
   margin: 10px 0;
-} */
+}
 
 .login-information .user-entry:nth-child(2) {
   padding-top: 30px;
