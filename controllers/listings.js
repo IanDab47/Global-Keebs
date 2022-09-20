@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     const user = res.locals.user
     const errorMsg = req.query.error || null
     let filterType = req.query.filter || ''
-    const tradeTrue = req.body.trade || null
+    const tradeTrue = req.query.trade || null
     const search = req.query.search || req.body.search || null
     const trueType = typeArr.filter(type => filterType === type)
 
@@ -35,9 +35,10 @@ router.get('/', async (req, res) => {
       if(filterType) {
         filterType = functions.capFirstLetter(filterType)
         if(tradeTrue && filterType !== 'store') {
+          console.log('working')
           listings = await db.listing.findAll({
             where: {
-              flair_text: filterType.toUpperCase() || 'TRADING'
+              flair_text: filterType.toUpperCase()
             },
             order: [
               [sequelize.col('created_utc'), 'DESC']
@@ -137,7 +138,11 @@ router.get('/:page_id', async (req, res) => {
 
 // post search on listings page
 router.post('/', (req, res) => {
-  res.redirect(`/listings/?filter=${req.query.filter}&search=${req.body.search}`)
+  if(req.body.trade) {
+    res.redirect(`/listings/?filter=${req.query.filter}&trade=ON&search=${req.body.search}`)
+  } else {
+    res.redirect(`/listings/?filter=${req.query.filter}&search=${req.body.search}`)
+  }
 })
 
 // Creates comment for listing by user
