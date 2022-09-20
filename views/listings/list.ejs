@@ -2,7 +2,7 @@
   <p><%= filter %></p>
 </header>
 
-<form action="/listings" method="POST">
+<form action="/listings/?filter=<%= filter %>" method="POST">
   <section class="search-container">
     <div class="searchbar">
       <input type="text" class="listing-search" id="search" name="search" placeholder="Search for an item...">
@@ -35,6 +35,9 @@
         <% } %>
       </div>
       <p class="listings-author">u/<%= listing.author %></p>
+      <div>
+        <p class="listings-locale"><%= functions.timeAgo(listing.created_utc) %></p>
+      </div>
       <div>
         <p class="listings-locale"><%= listing.location %></p>
       </div>

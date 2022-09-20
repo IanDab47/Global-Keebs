@@ -18,12 +18,28 @@ const convUnix = (timestamp) => {
   const min = date.getMinutes()
   const sec = date.getSeconds()
 
-  return `${month} ${day}, ${year} - ${hour}:${min}:${sec}`
+  console.log(sec, min, hour, day, month, year)
+
+  return { sec, min, hour, day, month, months, year }
+}
+
+const makeDate = (timestamp) => {
+  const time = convUnix(timestamp)
+
+  return `${time.months} ${time.day}, ${time.year} - ${time.hour}:${time.min}:${time.sec}`
 }
 
 const ageCheck = (timestamp) => {
   const twoMonths = 5270400000 // two months in milliseconds
   return timestamp * 1000 >= Date.now() - twoMonths ? true : false
+}
+
+const timeAgo = (timestamp) => {
+  const timeDiff = convUnix(Math.floor((Date.now() - timestamp * 1000) / 1000))
+  if(timeDiff.day > 1) return `${timeDiff.day} days ago`
+  if(timeDiff.hour > 1) return `${timeDiff.hour} hours ago`
+  if(timeDiff.min > 1) return `${timeDiff.min} minutes ago` 
+  return `${timeDiff.sec} seconds ago` 
 }
 
 const filterSelfText = (self_text) => {
@@ -70,7 +86,7 @@ const createListing = async (listing) => {
     const url = listing.url
 
     // Create Date from created UTC
-    const date = convUnix(created_utc)
+    const date = makeDate(created_utc)
     
     // Replace all '\n' with <br>
     const re_newLine = /\\n/g
@@ -235,4 +251,5 @@ const checkListings = async () => {
 exports.capFirstLetter = capFirstLetter
 exports.convUnix = convUnix
 exports.ageCheck = ageCheck
+exports.timeAgo = timeAgo
 exports.checkListings = checkListings

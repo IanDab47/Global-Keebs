@@ -62,13 +62,16 @@ router.get('/', async (req, res) => {
         listings = listings.filter(listing => listing.dataValues.self_text.toLowerCase().includes(search.toLowerCase()))
       }
 
+      // functions.timeAgo(listings.map)
+
       res.render('listings/list', {
         webpage: filterType,
         message: null,
         errorMsg,
         listings,
         filter: functions.capFirstLetter(filterType),
-        user
+        user,
+        functions
       })
     }
   } catch(err) {
@@ -81,6 +84,7 @@ router.get('/', async (req, res) => {
 // load listing display page
 router.get('/:page_id', async (req, res) => {
   try {
+    let favorite = null
     const user = res.locals.user
     const listing = await db.listing.findOne({
       where: {
@@ -89,16 +93,17 @@ router.get('/:page_id', async (req, res) => {
     })
     const comments = await db.comment.findAll({
       where: {
-        userId: user.id,
         listingId: listing.id
       }
     })
-    const favorite = await db.users_listings.findOne({
-      where: {
-        userId: user.id,
-        listingId: listing.id
-      }
-    })
+    if(user) {
+      favorite = await db.users_listings.findOne({
+        where: {
+          userId: user.id,
+          listingId: listing.id
+        }
+      })
+    }
     // console.log(listing)
     res.render('listings/show', {
       webpage: listing.title,
@@ -118,10 +123,10 @@ router.get('/:page_id', async (req, res) => {
 
 // post search on listings page
 router.post('/', (req, res) => {
-  console.log(req.body)
-  res.redirect(`/listings/?search=${req.body.search}`)
+  res.redirect(`/listings/?filter=${req.query.filter}&search=${req.body.search}`)
 })
 
+// Creates comment for listing by user
 router.post('/:pageId', async (req, res) => {
   try {
     const user = res.locals.user
@@ -147,34 +152,42 @@ router.post('/:pageId', async (req, res) => {
   }
 })
 
+// Adds listing to user favorites
 router.post('/:pageId/favorite', async (req, res) => {
   try {
-    const listing = db.listing.findOne({
+    const listing = await db.listing.findOne({
       where: {
         page_id: req.params.pageId
       }
     })
-    const user = db.user.findOne({
-      id: res.locals.user.id
+    const user = await db.user.findOne({
+      where: {
+        id: res.locals.user.id
+      }
     })
-    const favorite = db.users_listings.findOne({
+    const favorite = await db.users_listings.findOne({
       where: {
         listingId: listing.id,
         userId: user.id
       }
     })
 
-    console.log(favorite)
-    
-    listing.addUser(user)
+    if(!favorite) await listing.addUser(user)
+    else await db.users_listings.destroy({
+      where: {
+        listingId: listing.id,
+        userId: user.id
+      }
+    })
 
-    res.redirect(`/listings/${page_id}`)
+    res.redirect(`/listings/${listing.page_id}`)
   } catch(err) {
     console.log(err)
     res.send(`ERROR: ${err}`)
   }
 })
 
+// Deletes specific comment
 router.delete('/:pageId/delete', async (req, res) => {
   try {
     const pageId = req.params.pageId
