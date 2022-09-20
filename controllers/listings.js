@@ -93,6 +93,12 @@ router.get('/:page_id', async (req, res) => {
         listingId: listing.id
       }
     })
+    const favorite = await db.users_listings.findOne({
+      where: {
+        userId: user.id,
+        listingId: listing.id
+      }
+    })
     // console.log(listing)
     res.render('listings/show', {
       webpage: listing.title,
@@ -100,6 +106,7 @@ router.get('/:page_id', async (req, res) => {
       errorMsg: null,
       listing,
       user,
+      favorite,
       comments
     })
   } catch(err) {
@@ -150,10 +157,18 @@ router.post('/:pageId/favorite', async (req, res) => {
     const user = db.user.findOne({
       id: res.locals.user.id
     })
+    const favorite = db.users_listings.findOne({
+      where: {
+        listingId: listing.id,
+        userId: user.id
+      }
+    })
+
+    console.log(favorite)
     
     listing.addUser(user)
-    
-    res.redirect(`/${page_id}`)
+
+    res.redirect(`/listings/${page_id}`)
   } catch(err) {
     console.log(err)
     res.send(`ERROR: ${err}`)
@@ -164,15 +179,6 @@ router.delete('/:pageId/delete', async (req, res) => {
   try {
     const pageId = req.params.pageId
     const commentId = req.body.comment
-
-    console.log(pageId)
-    console.log(req.body)
-
-    const currentListing = await db.listing.findOne({
-      where: {
-        page_id: pageId
-      }
-    })
 
     await db.comment.destroy({
       where: {

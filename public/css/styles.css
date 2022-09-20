@@ -428,6 +428,17 @@ nav > .listing-container {
   padding-top: 15px;
 }
 
+.favorite {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.favorite img {
+  aspect-ratio: 1;
+  width: 5em;
+}
+
 .timestamp-display {
   display: flex;
   width: 100vw;

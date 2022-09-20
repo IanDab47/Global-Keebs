@@ -18,6 +18,15 @@
       </p>
       <p class="date"><%= listing.date %></p>
       <p><%= listing.location %></p>
+      <% if(!favorite) { %>
+        <form action="/<%= listing.page_id %>/favorite" method="POST">
+          <button type="submit" class="favorite"><img src="/imgs/star-empty.png" alt="Favorite Star" title="Wanna favorite?"></button>
+        </form>
+      <% } else { %>
+        <form action="/<%= listing.page_id %>/favorite" method="POST">
+          <button type="submit" class="favorite"><img src="/imgs/star.png" alt="Favorite Star" title="Wanna unfavorite?"></button>
+        </form>
+      <% } %>
     </div>
   </header>
 
