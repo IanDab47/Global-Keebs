@@ -107,7 +107,8 @@ router.get('/:page_id', async (req, res) => {
     const comments = await db.comment.findAll({
       where: {
         listingId: listing.id
-      }
+      },
+      include: [db.user]
     })
     if(user) {
       favorite = await db.users_listings.findOne({
@@ -117,7 +118,7 @@ router.get('/:page_id', async (req, res) => {
         }
       })
     }
-    // console.log(listing)
+    console.log(comments.map(comment => comment.user))
     res.render('listings/show', {
       webpage: listing.title,
       message: null,
@@ -185,7 +186,7 @@ router.post('/:pageId/favorite', async (req, res) => {
       }
     })
 
-    if(!favorite) await listing.addUser(user)
+    if(!favorite) await user.addListing(listing)
     else await db.users_listings.destroy({
       where: {
         listingId: listing.id,

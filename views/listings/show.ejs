@@ -74,13 +74,27 @@
       <!-- Display all comments that exist -->
       <% if(comments) { %>
         <section class="comments-display">
-        <% comments.forEach(item => { %>
-          <p><%= item.comment %> | <a href="/listings/<%= listing.page_id %>/edit">Edit Comment</a></p>
-          <form method="POST", action="/listings/<%= listing.page_id %>/delete/?_method=DELETE">
-            <input type="hidden" name="comment" value="<%= item.id %>">
-            <button type="submit" class="btn delete-btn">Delete</button>
-          </form>
+          <% let count = 0 %>
+          <% comments.forEach(item => { %>
+            <% if(item.userId === user.id) { %>
+              <p><%= item.comment %> | <a href="/listings/<%= listing.page_id %>/edit">Edit Comment</a></p>
+              <a href="/user">u/<%= user.username %></a>
+              <form method="POST", action="/listings/<%= listing.page_id %>/delete/?_method=DELETE">
+                <input type="hidden" name="comment" value="<%= item.id %>">
+                <button type="submit" class="btn delete-btn">Delete</button>
+              </form>
+            <% } else { %>
+              <% count++ %>
+
+              <!-- <p><%= item.comment %></p> <!-- Display messages
+              <a href="/user">u/<%= item.user.username %></a> -->
+            <% } %>
           <% }) %>
+          <% if(count === 1) { %>
+            <p><i>1 other person has responded.</i></p>
+          <% } else { %>
+            <p><%= count %> other people have responded.</p>
+          <% } %>
         </section>
       <% } %>
 

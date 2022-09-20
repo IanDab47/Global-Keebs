@@ -81,8 +81,6 @@ router.get('/favorites', async (req, res) => {
     include: [db.listing]
   })
 
-  console.log(favorites.listings)
-
   res.render('user/favorites', {
     webpage: user.username,
     message: null,

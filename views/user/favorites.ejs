@@ -7,11 +7,16 @@
       <p class="profile-title">Favorites</p>
     </div>
 
-    <section class="profile-content">
-      <% // favorites.forEach(favorite => { %>
-        <p class="content-title"><a href="/listings/<%= // favorite.listings.map(listing => listing.page_id) %>"><%= // favorite.listings.map(listing => listing.title)  %></a></p>
-        <p class="content-author">Posted by - u/<%= // favorite.listings.map(listing => listing.author)  %></p>
-      <% // }) %>
-    </section>
+    <% if(favorites) { %>
+      <section class="profile-content">
+        <% favorites.map(favorite => { %>
+          <% favorite.listings.map(listing => { %>
+            <p class="content-title"><a href="/listings/<%= listing.page_id %>"><%= listing.title %></a></p>
+            <p class="content-author">Posted by - u/<%= listing.author  %></p>
+            <div class="content-spacer"></div>
+          <% }) %>
+        <% }) %>
+      </section>
+    <% } %>
   </main>
 </div>

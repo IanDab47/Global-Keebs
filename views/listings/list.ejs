@@ -1,5 +1,9 @@
 <header class="listings-title">
-  <p><%= filter %></p>
+  <% if(!filter) { %>
+    <p>Listings</p>
+  <% } else { %>
+    <p><%= filter %></p>
+  <% } %>
 </header>
 
 <form action="/listings/?filter=<%= filter %>" method="POST">
