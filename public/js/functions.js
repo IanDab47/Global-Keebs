@@ -18,15 +18,13 @@ const convUnix = (timestamp) => {
   const min = date.getMinutes()
   const sec = date.getSeconds()
 
-  console.log(sec, min, hour, day, month, year)
-
   return { sec, min, hour, day, month, months, year }
 }
 
 const makeDate = (timestamp) => {
   const time = convUnix(timestamp)
 
-  return `${time.months} ${time.day}, ${time.year} - ${time.hour}:${time.min}:${time.sec}`
+  return `${time.month} ${time.day}, ${time.year} - ${time.hour}:${time.min}:${time.sec}`
 }
 
 const ageCheck = (timestamp) => {
@@ -35,11 +33,11 @@ const ageCheck = (timestamp) => {
 }
 
 const timeAgo = (timestamp) => {
-  const timeDiff = convUnix(Math.floor((Date.now() - timestamp * 1000) / 1000))
-  if(timeDiff.day > 1) return `${timeDiff.day} days ago`
-  if(timeDiff.hour > 1) return `${timeDiff.hour} hours ago`
-  if(timeDiff.min > 1) return `${timeDiff.min} minutes ago` 
-  return `${timeDiff.sec} seconds ago` 
+  const timeDiff = Math.floor((Date.now() - timestamp * 1000) / 1000)
+  if(timeDiff > 86401) return `${Math.floor(timeDiff / 86400)} days ago`
+  if(timeDiff > 3601) return `${Math.floor(timeDiff / 3600)} hours ago`
+  if(timeDiff > 61) return `${Math.floor(timeDiff / 60)} minutes ago` 
+  return `${timeDiff} seconds ago` 
 }
 
 const filterSelfText = (self_text) => {
@@ -103,9 +101,11 @@ const createListing = async (listing) => {
     const re_imgur = /\(([^)]+)\)/g
     let timestamp = ''
     const listingText = re_imgur.exec(self_text) || ['ha', '']
+
     // console.log(listingText)
     // filterSelfText(self_text)
     // console.log('------ NEW LISTING ------')
+    
     listingText[1].includes('imgur') ? timestamp = listingText[1] : timestamp = ''
   
     // Find or create new model with necessary listing data

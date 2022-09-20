@@ -26,7 +26,9 @@
   --flr-sell: #ff5555;
   --flr-buy: #40e47b;
   --flr-trd: #ff79c6;
-  --flr-gb: #82dae2;
+  --flr-str: #82dae2;
+  --flr-gb: #bd93f9;
+  --flr-etc: #e1f285;
   --input-bg: #dfdfdf;
   --btn-bg: #C9C4B2;
 }
@@ -242,7 +244,52 @@ nav > .listing-container {
 .store-flair::before {
   content: 'Store';
   width: 15%; height: 10%;
+  background: var(--flr-str);
+  font-family: 'montserrat alternates';
+  color: #eee;
+  padding: .2em 1.2em;
+}
+
+.bulk-flair::before {
+  content: 'Bulk';
+  width: 15%; height: 10%;
+  background: var(--flr-str);
+  font-family: 'montserrat alternates';
+  color: #eee;
+  padding: .2em 1.2em;
+}
+
+.gb-flair::before {
+  content: 'Group Buy';
+  width: 25%; height: 10%;
   background: var(--flr-gb);
+  font-family: 'montserrat alternates';
+  color: #eee;
+  padding: .2em 1.2em;
+}
+
+.ic-flair::before {
+  content: 'Interest Check';
+  width: 25%; height: 10%;
+  background: var(--flr-gb);
+  font-family: 'montserrat alternates';
+  color: #eee;
+  padding: .2em 1.2em;
+}
+
+.artisan-flair::before {
+  content: 'Artisan';
+  width: 15%; height: 10%;
+  background: var(--flr-etc);
+  font-family: 'montserrat alternates';
+  color: #fff;
+  padding: .2em 1.2em;
+}
+
+.other-flair::before {
+  content: 'Other';
+  width: 15%; height: 10%;
+  background: var(--input-bg);
   font-family: 'montserrat alternates';
   color: #eee;
   padding: .2em 1.2em;
@@ -345,7 +392,12 @@ nav > .listing-container {
 .listing-display-container .selling-flair::before,
 .listing-display-container .buying-flair::before,
 .listing-display-container .trading-flair::before, 
-.listing-display-container .store-flair::before {
+.listing-display-container .store-flair::before,
+.listing-display-container .bulk-flair::before, 
+.listing-display-container .gb-flair::before,
+.listing-display-container .ic-flair::before,
+.listing-display-container .artisan-flair::before, 
+.listing-display-container .other-flair::before {
   width: auto; height: 1.2em;
   font-size: 1.3em;
   border-radius: 4px 20px 4px 20px;
@@ -419,7 +471,12 @@ nav > .listing-container {
 .listing-information .selling-flair::before,
 .listing-information .buying-flair::before,
 .listing-information .trading-flair::before,
-.listing-information .store-flair::before {
+.listing-information .store-flair::before,
+.listing-information .bulk-flair::before,
+.listing-information .gb-flair::before,
+.listing-information .ic-flair::before,
+.listing-information .artisan-flair::before,
+.listing-information .other-flair::before {
   position: relative;
   border-radius: 5px 30px 5px 30px;
 }
@@ -436,7 +493,7 @@ nav > .listing-container {
 
 .favorite img {
   aspect-ratio: 1;
-  width: 5em;
+  width: 3.5em;
 }
 
 .timestamp-display {

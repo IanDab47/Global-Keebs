@@ -34,10 +34,19 @@ router.get('/', async (req, res) => {
       // Check for filter settings
       if(filterType) {
         filterType = functions.capFirstLetter(filterType)
-        if(tradeTrue) {
+        if(tradeTrue && filterType !== 'store') {
           listings = await db.listing.findAll({
             where: {
               flair_text: filterType.toUpperCase() || 'TRADING'
+            },
+            order: [
+              [sequelize.col('created_utc'), 'DESC']
+            ]
+          })
+        } else if(filterType === 'store') {
+          listings = await db.listing.findAll({
+            where: {
+              flair_text: !'SELLING' && !'BUYING' 
             },
             order: [
               [sequelize.col('created_utc'), 'DESC']
@@ -54,7 +63,11 @@ router.get('/', async (req, res) => {
           })
         }
       } else {
-        listings = await db.listing.findAll()
+        listings = await db.listing.findAll({
+          order: [
+            [sequelize.col('created_utc'), 'DESC']
+          ]
+        })
       }
 
       // filter by keyword search

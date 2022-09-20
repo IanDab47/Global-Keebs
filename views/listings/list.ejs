@@ -30,8 +30,18 @@
           <div class="buying-flair"></div>
         <% } else if(flair === 'TRADING') { %>
           <div class="trading-flair"></div>
-        <% } else { %>
+        <% } else if(flair === 'STORE') { %>
           <div class="store-flair"></div>
+        <% } else if(flair === 'BULK') { %>
+          <div class="bulk-flair"></div>
+        <% } else if(flair === 'GROUP BUY') { %>
+          <div class="gb-flair"></div>
+        <% } else if(flair === 'INTEREST CHECK') { %>
+          <div class="ic-flair"></div>
+        <% } else if(flair === 'ARTISAN') { %>
+          <div class="artisan-flair"></div>
+        <% } else { %>
+          <div class="other-flair"></div>
         <% } %>
       </div>
       <p class="listings-author">u/<%= listing.author %></p>
@@ -39,7 +49,9 @@
         <p class="listings-locale"><%= functions.timeAgo(listing.created_utc) %></p>
       </div>
       <div>
-        <p class="listings-locale"><%= listing.location %></p>
+        <% if(listing.flair_text === 'SELLING' || listing.flair_text === 'BUYING' || listing.flair_text === 'TRADING') { %>
+          <p class="listings-locale"><%= listing.location %></p>
+        <% } %>
       </div>
     </a>
   </section>

@@ -74,7 +74,14 @@ router.get('/comments', async (req, res) => {
 
 router.get('/favorites', async (req, res) => {
   const user = res.locals.user
-  const favorites = null
+  const favorites = await db.user.findAll({
+    where: {
+      id: user.id
+    },
+    include: [db.listing]
+  })
+
+  console.log(favorites.listings)
 
   res.render('user/favorites', {
     webpage: user.username,

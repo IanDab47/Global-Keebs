@@ -4,13 +4,13 @@
 
   <main class="profile-display">
     <div class="profile-account">
-      <p class="profile-title">Comments</p>
+      <p class="profile-title">Favorites</p>
     </div>
 
     <section class="profile-content">
       <% // favorites.forEach(favorite => { %>
-        <p class="content-title"><a href="/listings/<%= // favorite.page_id %>"><%= // favorite.title %></a></p>
-        <p class="content-author">Posted by - u/<%= // favorite.author %></p>
+        <p class="content-title"><a href="/listings/<%= // favorite.listings.map(listing => listing.page_id) %>"><%= // favorite.listings.map(listing => listing.title)  %></a></p>
+        <p class="content-author">Posted by - u/<%= // favorite.listings.map(listing => listing.author)  %></p>
       <% // }) %>
     </section>
   </main>
