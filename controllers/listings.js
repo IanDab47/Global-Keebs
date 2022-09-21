@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
     const errorMsg = req.query.error || null
     let filterType = req.query.filter || ''
     const tradeTrue = req.query.trade || null
+    const storeTrue = req.query.stores || null
     const search = req.query.search || req.body.search || null
     const trueType = typeArr.filter(type => filterType === type)
 
@@ -34,20 +35,32 @@ router.get('/', async (req, res) => {
       // Check for filter settings
       if(filterType) {
         filterType = functions.capFirstLetter(filterType)
-        if(tradeTrue && filterType !== 'store') {
-          console.log('working')
+        if(tradeTrue && filterType !== 'Store') {
+          filterArr = [filterType.toUpperCase(), 'TRADING']
           listings = await db.listing.findAll({
             where: {
-              flair_text: filterType.toUpperCase()
+              flair_text: filterArr
             },
             order: [
               [sequelize.col('created_utc'), 'DESC']
             ]
           })
-        } else if(filterType === 'store') {
+        } else if(storeTrue && filterType === 'Store') {
+          console.log('working')
+          filterArr = ['GROUP BUY', 'INTEREST CHECK', 'STORE', 'BULK', 'ARTISAN']
           listings = await db.listing.findAll({
             where: {
-              flair_text: !'SELLING' && !'BUYING' 
+              flair_text: filterArr
+            },
+            order: [
+              [sequelize.col('created_utc'), 'DESC']
+            ]
+          })
+        } else if(filterType === 'Store') {
+          filterArr = ['GROUP BUY', 'INTEREST CHECK']
+          listings = await db.listing.findAll({
+            where: {
+              flair_text: filterArr
             },
             order: [
               [sequelize.col('created_utc'), 'DESC']
@@ -137,6 +150,7 @@ router.get('/:page_id', async (req, res) => {
   }
 })
 
+// loads listing page with comment edit
 router.get('/:page_id/edit/:commentId', async (req, res) => {
   const user = res.locals.user
   const listing = await db.listing.findOne({
@@ -171,6 +185,8 @@ router.get('/:page_id/edit/:commentId', async (req, res) => {
 router.post('/', (req, res) => {
   if(req.body.trade) {
     res.redirect(`/listings/?filter=${req.query.filter}&trade=ON&search=${req.body.search}`)
+  } else if(req.body.other) {
+    res.redirect(`/listings/?filter=${req.query.filter}&stores=ON&search=${req.body.search}`) 
   } else {
     res.redirect(`/listings/?filter=${req.query.filter}&search=${req.body.search}`)
   }
@@ -237,6 +253,7 @@ router.post('/:pageId/favorite', async (req, res) => {
   }
 })
 
+// Edit comment on listing
 router.put('/:pageId/edit/:commentId', async (req, res) => {
   try {
     const user = res.locals.user

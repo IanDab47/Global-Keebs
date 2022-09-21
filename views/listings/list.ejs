@@ -13,10 +13,18 @@
       <button type="submit" class="btn search-btn">Submit</button>
     </div>
 
-    <div class="toggle-container">
-      <input type="checkbox" id="toggle-trade" name="trade">
-      <label for="toggle-trade">Include Trade Listings</label>
-    </div>
+    <%if(filter !== 'Store') { %>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggle-trade" name="trade">
+        <label for="toggle-trade">Include Trade Listings</label>
+      </div>
+    <% } else{ %>
+      <div class="toggle-container">
+        <input type="checkbox" id="toggle-other" name="other">
+        <label for="toggle-other">Include All Store Listings</label>
+      </div>
+    <% } %>%>
+
   </section>
 </form>
 
