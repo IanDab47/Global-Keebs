@@ -1,5 +1,5 @@
 # GLOBAL KEEBS 
-Check it out for yourself: [global-keebs-iandab47.koyeb.app](global-keebs-iandab47.koyeb.app)
+Check it out for yourself: [globalkeebs.koyeb.app](https://global-keebs-iandab47.koyeb.app/)
 
 The all-in-one app to view the current keyboard listings on the web. This app takes the listings from r/mechmarket and compacts them into an orgainzed and clean browsing experience, separating listings by flair type and displaying all the details in a neat and intuitive way.
 
