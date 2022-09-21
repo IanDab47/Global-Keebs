@@ -1,4 +1,6 @@
-# GLOBAL KEEBS
+# GLOBAL KEEBS 
+Check it out for yourself: global-keebs-iandab47.koyeb.app
+
 The all-in-one app to view the current keyboard listings on the web. This app takes the listings from r/mechmarket and compacts them into an orgainzed and clean browsing experience, separating listings by flair type and displaying all the details in a neat and intuitive way.
 
 ![Home Page](https://i.imgur.com/hqwwGBI.png "Home Page")
@@ -32,6 +34,16 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 - morgan
 - pg
 - sequelize
+
+## Installation Process
+- Fork and clone onto your local device
+- Create a .env file with the following variables
+  - PORT = '8000'
+    - This can be any port available
+  - ENC_SECRET = ''
+    - Inbetween the quotes needs to contain a string of some amount of characters
+  - DATABASE_URI = ''
+    - 
 
 ### RESTful Charts
 ##### Users
