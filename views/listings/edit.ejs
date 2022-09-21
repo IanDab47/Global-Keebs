@@ -71,37 +71,10 @@
         <p>Comments</p>
       </header>
 
-      <!-- Display all comments that exist -->
-      <% if(comments) { %>
-        <section class="comments-display">
-          <% let count = 0 %>
-          <% comments.forEach(item => { %>
-            <% if(item.userId === user.id) { %>
-              <p><%= item.comment %> | <a href="/listings/<%= listing.page_id %>/edit/<%= item.id %>">Edit Comment</a></p>
-              <a href="/user">u/<%= user.username %></a>
-              <form method="POST", action="/listings/<%= listing.page_id %>/delete/?_method=DELETE">
-                <input type="hidden" name="comment" value="<%= item.id %>">
-                <button type="submit" class="btn delete-btn">Delete</button>
-              </form>
-            <% } else { %>
-              <% count++ %>
-
-              <!-- <p><%= item.comment %></p> <!-- Display messages
-              <a href="/user">u/<%= item.user.username %></a> -->
-            <% } %>
-          <% }) %>
-          <% if(count === 1) { %>
-            <p><i>1 other person has responded.</i></p>
-          <% } else { %>
-            <p><%= count %> other people have responded.</p>
-          <% } %>
-        </section>
-      <% } %>
-
       <!-- Display input for comments -->
-      <form action="/listings/<%= listing.page_id %>" method="POST">
-        <label for="comment">Message u/<%= listing.author %> for further information</label>
-        <textarea id="comment" name="comment" class="comment-input"></textarea> 
+      <form action="/listings/<%= listing.page_id %>/edit/<%= comment.id %>/?_method=PUT" method="POST">
+        <label for="comment">Edit your comment</label>
+        <textarea id="comment" name="comment" class="comment-input" placeholder="<%= comment.comment %>"></textarea> 
   
         <button type="submit" class="btn message-btn">Message</button>
       </form>

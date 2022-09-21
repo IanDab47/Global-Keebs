@@ -99,6 +99,7 @@ router.get('/', async (req, res) => {
 router.get('/:page_id', async (req, res) => {
   try {
     let favorite = null
+    const message = req.query.message || null
     const user = res.locals.user
     const listing = await db.listing.findOne({
       where: {
@@ -119,10 +120,10 @@ router.get('/:page_id', async (req, res) => {
         }
       })
     }
-    console.log(comments.map(comment => comment.user))
+    // console.log(comments.map(comment => comment.user))
     res.render('listings/show', {
       webpage: listing.title,
-      message: null,
+      message: message,
       errorMsg: null,
       listing,
       user,
@@ -134,6 +135,36 @@ router.get('/:page_id', async (req, res) => {
     const badListing = 'Listing does not exist...'
     res.redirect(`/listings/?error=${badListing}`)
   }
+})
+
+router.get('/:page_id/edit/:commentId', async (req, res) => {
+  const user = res.locals.user
+  const listing = await db.listing.findOne({
+    where: {
+      page_id: req.params.page_id
+    }
+  })
+  const comment = await db.comment.findOne({
+    where: {
+      id: req.params.commentId
+    }
+  })
+  favorite = await db.users_listings.findOne({
+    where: {
+      userId: user.id,
+      listingId: listing.id
+    }
+  })
+
+  res.render('listings/edit', {
+    webpage: 'Edit Comment',
+    message: null,
+    errorMsg: null,
+    listing,
+    user,
+    favorite,
+    comment
+  })
 })
 
 // post search on listings page
@@ -203,6 +234,36 @@ router.post('/:pageId/favorite', async (req, res) => {
   } catch(err) {
     console.log(err)
     res.send(`ERROR: ${err}`)
+  }
+})
+
+router.put('/:pageId/edit/:commentId', async (req, res) => {
+  try {
+    const user = res.locals.user
+    let message = null
+    const comment = await db.comment.findOne({
+      where: {
+        id: req.params.commentId
+      }, 
+      include: [db.user]
+    })
+
+    if(user.id == comment.user.id) {
+      await db.comment.update({
+        comment: req.body.comment
+      },
+      {
+        where: {
+          id: req.params.commentId
+        }
+      })
+      message = 'Comment edited successfully! ✔'
+    }
+    
+    res.redirect(`/listings/${req.params.pageId}/?message=${message}`)
+  } catch(err) {
+    console.log(err)
+    res.send('SERVER ERROR!')
   }
 })
 
