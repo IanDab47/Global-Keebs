@@ -30,7 +30,7 @@
   --flr-trd: #ff79c6;
   --flr-str: #82dae2;
   --flr-gb: #bd93f9;
-  --flr-etc: #e1f285;
+  --flr-etc: #d8e880;
   --input-bg: #dfdfdf;
   --btn-bg: #b9b4a2;
 }
@@ -220,7 +220,7 @@ nav > .listing-container {
   width: 15%; height: 10%;
   background: var(--flr-sell);
   font-family: 'montserrat alternates';
-  color: #eee;
+  color: var(--bg-lig-2);
   padding: .2em 1.2em;
 }
 
@@ -229,7 +229,7 @@ nav > .listing-container {
   width: 15%; height: 10%;
   background: var(--flr-buy);
   font-family: 'montserrat alternates';
-  color: #eee;
+  color: var(--bg-lig-2);
   padding: .2em 1.2em;
 }
 
@@ -238,7 +238,7 @@ nav > .listing-container {
   width: 15%; height: 10%;
   background: var(--flr-trd);
   font-family: 'montserrat alternates';
-  color: #eee;
+  color: var(--bg-lig-2);
   padding: .2em 1.2em;
 }
 
@@ -247,7 +247,7 @@ nav > .listing-container {
   width: 15%; height: 10%;
   background: var(--flr-str);
   font-family: 'montserrat alternates';
-  color: #eee;
+  color: var(--bg-lig-2);
   padding: .2em 1.2em;
 }
 
@@ -256,7 +256,7 @@ nav > .listing-container {
   width: 15%; height: 10%;
   background: var(--flr-str);
   font-family: 'montserrat alternates';
-  color: #eee;
+  color: var(--bg-lig-2);
   padding: .2em 1.2em;
 }
 
@@ -266,7 +266,7 @@ nav > .listing-container {
   white-space: nowrap;
   background: var(--flr-gb);
   font-family: 'montserrat alternates';
-  color: #eee;
+  color: var(--bg-lig-2);
   padding: .2em 1.2em;
 }
 
@@ -276,7 +276,7 @@ nav > .listing-container {
   white-space: nowrap;
   background: var(--flr-gb);
   font-family: 'montserrat alternates';
-  color: #eee;
+  color: var(--bg-lig-2);
   padding: .2em 1.2em;
 }
 
@@ -294,7 +294,7 @@ nav > .listing-container {
   width: 15%; height: 10%;
   background: var(--bg-med-1);
   font-family: 'montserrat alternates';
-  color: #eee;
+  color: var(--bg-lig-2);
   padding: .2em 1.2em;
 }
 
@@ -323,6 +323,10 @@ nav > .listing-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.continue p:last-of-type {
+  font-size: 1em;
 }
 
 .landing-btn {

@@ -54,15 +54,17 @@
   <% } %>
 
   <!-- All listing details -->
-  <section class="selftext-display">
-    <div class="selftext-title">
-      <h2>Listing Details</h2>
-    </div>
-
-    <div class="selftext-content">
-      <p><%- listing.self_text %></p>
-    </div>
-  </section>
+  <% if(listing.self_text.length > 0) { %>
+    <section class="selftext-display">
+      <div class="selftext-title">
+        <h2>Listing Details</h2>
+      </div>
+  
+      <div class="selftext-content">
+        <p><%- listing.self_text %></p>
+      </div>
+    </section>
+  <% } %>
 
   <!-- All comments -->
   <% if(user) { %>
