@@ -35,30 +35,35 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 
 ### RESTful Charts
 ##### Users
-| HTTP   | URL                | CRUD   | Action               |
-| ---    | ---                | :----: | ---                  |
-| GET    | /:username         | R      | Display user details |
-| PUT    | /:username         | U      | Update user details  |
-| DELETE | /:username         | D      | Logout of user       |
+| HTTP   | URL             | CRUD   | Action                            |
+| ---    | ---             | :----: | ---                               |
+| POST   | /user/login     | C      | Update user details               |
+| POST   | /user/signup    | C      | Update user details               |
+| GET    | /user           | R      | Display user details              |
+| GET    | /user/edit      | R      | Display user details to edit      |
+| GET    | /user/comments  | R      | Display all comments made by user |
+| GET    | /user/favorites | R      | Display all favorites by user     |
+| GET    | /user/login     | R      | Display login details             |
+| GET    | /user/signup    | R      | Display new account details       |
+| GET    | /user/delete    | R      | Delete account                    |
+| PUT    | /user           | U      | Update user details               |
+| DELETE | /user           | D      | Logout of user                    |
 
 ##### Listings
-| HTTP   | URL         | CRUD   | Action                          |
-| :---   | :---        | :----: | :---                            |
-| POST   | /:listingId | C      | make comment on actual listing  |
-| GET    | /selling    | R      | display selling listings        |
-| GET    | /buying     | R      | display buying listings         |
-| GET    | /stores     | R      | display store listings          |
-| GET    | /:listingId | R      | display listings details        |
-| PUT    | /:listingId | U      | edit comment                    |
-| DELETE | /:listingId | D      | delete comment                  |
+| HTTP   | URL                  | CRUD   | Action                                  |
+| :---   | :---                 | :----: | :---                                    |
+| POST   | /listings            | C      | provide search and filters for listings |
+| POST   | /listings/favorite   | C      | Add listing to favorites                |
+| GET    | /listings            | R      | display all listings                    |
+| GET    | /listings/:listingId | R      | display listing details                 |
 
-##### Favorites
-| HTTP   | URL                  | CRUD   | Action                        |
-| ---    | ---                  | :----: | ---                           |
-| POST   | /:listingId          | C      | add listing to favorites      |
-| GET    | /:username/favorites | R      | view all favorite listings    |
-| DELETE | /:listingId          | D      | remove listing from favorites |
-| DELETE | /:username/favorites | D      | remove listing from favorites |
+##### Comments
+| HTTP   | URL                                  | CRUD   | Action                      |
+| ---    | ---                                  | :----: | ---                         |
+| POST   | /listings/:listingId                 | C      | add listing to favorites    |
+| GET    | /listings/:listingId/edit/:commentId | R      | view comment to edit        |
+| PUT    | /listings/:listingId/edit/:commentId | U      | Update user details         |
+| DELETE | /listings/delete                     | D      | remove comment from listing |
 
 ### ERD
 ![Base ERD](https://i.imgur.com/o3humRS.png "Base ERD")
@@ -68,10 +73,8 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 - Create Listing model to store listing data extracted from /r/mechmarket
 - Display all listings by flair type
 - Search for listings that include search query in title or post text
-- Display Timestamp (or default images) on homepage
 - Login to site using created account credentials
-- Save, comment, and make posts
-- Make mobile Friendly
+- Save and comment on posts
 
 ### Stretch Goals
 - Implement Reddit API to login with reddit account and post comments/messages/listings to Reddit
@@ -83,3 +86,4 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 - Animate webpages
 - Learn and convert to Angular
 - Dark mode
+- Make mobile Friendly
