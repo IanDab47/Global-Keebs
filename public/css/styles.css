@@ -24,6 +24,7 @@
   --bg-lig-1: #eae7e0;
   --bg-lig-2: #f1f1f1;
   --bg-med-1: #a0a0a0;
+  --bg-med-2: #808080;
   --flr-sell: #ff5555;
   --flr-buy: #40e47b;
   --flr-trd: #ff79c6;
@@ -61,34 +62,28 @@ a {
   cursor: pointer;
 }
 
-::-webkit-scrollbar,
-::-moz-scrollbar {
+::-webkit-scrollbar {
   width: 8px;
 }
 
-::-webkit-scrollbar:hover,
-::-moz-scrollbar:hover {
+::-webkit-scrollbar:hover {
   width: 18px;
 }
 
-::-webkit-scrollbar-thumb,
-::-moz-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: rgb(214 40 40 / .4);
   border-radius: 5px;
 }
 
-::-webkit-scrollbar-thumb:hover,
-::-moz-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: rgb(214 40 40 / 1);
 }
 
-::-webkit-scrollbar-track,
-::-moz-scrollbar-track {
+::-webkit-scrollbar-track {
   background: rgb(90 90 60 / .1);
 }
 
-::-webkit-scrollbar-corner,
-::-moz-scrollbar-corner {
+::-webkit-scrollbar-corner {
  background: transparent;
 }
 
@@ -297,10 +292,50 @@ nav > .listing-container {
 .other-flair::before {
   content: 'Other';
   width: 15%; height: 10%;
-  background: var(--input-bg);
+  background: var(--bg-med-1);
   font-family: 'montserrat alternates';
   color: #eee;
   padding: .2em 1.2em;
+}
+
+/* LANDING */
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; align-items: center;
+  width: 100vw; min-height: 90vh;
+  font-family: 'montserrat';
+  font-weight: 300;
+  margin-top: -1.5em;
+  font-size: 2.5em;
+  user-select: none;
+}
+
+.landing-container p:first-of-type {
+  font-size: 1.5em;
+}
+
+.spacer {
+  height: 2em;
+}
+
+.continue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-btn {
+  background-color: var(--btn-bg);
+  font-family: 'montserrat alternates';
+  font-size: .5em; font-style: italic;
+  color: var(--bg-lig-2)
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 4s ease forwards;
+  animation-delay: calc(var(--order) * 1s);
 }
 
 /* LISTINGS */
@@ -912,6 +947,17 @@ nav > .listing-container {
 @keyframes drop-down-message {
   from {transform: translateY(-3em);}
   to {transform: translateY(0);}
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    scale: 90%;
+  }
+  to {
+    opacity: 1;
+    scale: 100%;
+  }
 }
 
 @media (min-width: 2560px) {

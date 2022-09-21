@@ -1,1 +1,13 @@
-<h1 class="title">Welcome to Global Keebs!</h1>
+<div class="landing-container <% if(!user) { %>fade-in<% } %>">
+  <div class="<% if(!user) { %>fade-in<% } %>" style="--order: 0">
+    <p class="">Welcome to</p> 
+    <p class=title>Global Keebs!</p>
+  </div>
+  <div class="spacer"></div>
+  <div class="continue <% if(!user) { %>fade-in<% } %>" style="--order: 2">
+    <p>Click here to continue</p>
+    <form action="/listings">
+      <button type="submit" class="btn landing-btn">Continue</button>
+    </form>
+  </div>
+</div>
