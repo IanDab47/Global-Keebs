@@ -31,6 +31,7 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 - ejs
 - express
 - express-js-layouts
+- method-override
 - morgan
 - pg
 - sequelize
@@ -39,11 +40,11 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 - Fork and clone onto your local device
 - Create a .env file with the following variables
   - PORT = '8000'
-    - This can be any port available
+    - This can be any available port number
   - ENC_SECRET = ''
     - Inbetween the quotes needs to contain a string of some amount of characters
-  - DATABASE_URI = ''
-    - 
+- Ensure you have psql installed
+- Run the commands `sequlize db:create` and `sequelize db:migrate`
 
 ### RESTful Charts
 ##### Users
