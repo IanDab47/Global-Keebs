@@ -38,13 +38,24 @@ Using the Reddit API, you can link your account to reddit and save your favorite
 
 ## Installation Process
 - Fork and clone onto your local device
+- Run `npm i` in your terminal to install all the neccessary packages
 - Create a .env file with the following variables
-  - PORT = '8000'
+  - PORT = "#"
     - This can be any available port number
-  - ENC_SECRET = ''
+  - ENC_SECRET = "---"
     - Inbetween the quotes needs to contain a string of some amount of characters
 - Ensure you have psql installed
-- Run the commands `sequlize db:create` and `sequelize db:migrate`
+  ##### - LINUX/WSL/WINDOWS USERS:
+    - Ensure Postgres is running by typing `sudo service postgresql start`
+    - Then enter `psql` and run these two lines of code to create the user and password:
+      - `CREATE USER sequelize WITH SUPERUSER PASSWORD 'sequelize';`
+      - `ALTER USER sequelize WITH SUPERUSER;` 
+  ##### - MAC USERS:
+    - Open the config folder and the config.json file inside
+    - Remove the initial "username" and "password" lines
+
+- Run the commands `sequelize db:create` and `sequelize db:migrate`
+- Run node or nodemon on a chrome browser to load the website
 
 ### RESTful Charts
 ##### Users
