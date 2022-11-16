@@ -44,6 +44,11 @@ body {
     var(--bg-lig-2)
   );
   overflow: overlay;
+  pointer-events: none;
+}
+
+body > * {
+  pointer-events: initial;
 }
 /* 
 body :not(.nav-container *) {
@@ -163,24 +168,19 @@ nav > .listing-container {
   align-items: center; justify-content: center;
   width: 100vw; height: 2.5em;
   background: #d62828;
-  /* font-weight: 600; */
   color: #EEE;
-  user-select: none;
-  z-index: -1;
 
   animation-name: drop-down-message;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-duration: 1.2s;
 }
 
-.error-container:hover {
-  cursor: pointer;
-}
-
 .error-container > p::after {
   content: 'X';
-  font-size: 1.2em; font-weight: 300;
   position: absolute;
+  cursor: pointer;
+  pointer-events: all;
+  font-size: 1.2em; font-weight: 300;
   margin-left: 8vw;
 }
 
@@ -190,7 +190,6 @@ nav > .listing-container {
   align-items: center; justify-content: center;
   width: 100vw; height: 2.5em;
   background: #d6a828;
-  /* font-weight: 600; */
   color: #EEE;
   user-select: none;
   z-index: -1;
@@ -200,14 +199,12 @@ nav > .listing-container {
   animation-duration: 1.2s;
 }
 
-.message-container:hover {
-  cursor: pointer;
-}
-
 .message-container > p::after {
   content: 'X';
-  font-size: 1.2em; font-weight: 300;
   position: absolute;
+  cursor: pointer;
+  pointer-events: all;
+  font-size: 1.2em; font-weight: 300;
   margin-left: 8vw;
 }
 
