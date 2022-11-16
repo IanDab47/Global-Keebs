@@ -94,6 +94,7 @@ a {
   width: 100vw; height: 8.5vh;
   background: var(--nav-bg-1);
   color: var(--nav-act-1);
+  caret-color: transparent;
   outline: 1.5vh solid var(--nav-brd-1);
   box-shadow: 0 16px 9px rgb(180 150 150 / .7);
   padding: 0 80px;
@@ -304,11 +305,11 @@ nav > .listing-container {
   flex-direction: column;
   justify-content: center; align-items: center;
   width: 100vw; min-height: 90vh;
+  font-size: 2.5em;
   font-family: 'montserrat';
   font-weight: 300;
+  caret-color: transparent;
   margin-top: -1.5em;
-  font-size: 2.5em;
-  user-select: none;
   pointer-events: none;
 }
 
@@ -781,12 +782,12 @@ nav > .listing-container {
   padding-left: 12px;
   box-shadow: 0 0 0 rgb(214 40 40 / .3);
 
-  transition: 120ms ease-out 60ms;
+  transition: all 120ms ease-out 60ms;
 }
 
 .login-input:is(:hover, :focus-within) {
-  box-shadow: 0 0 10px rgb(60 60 30 / .3);
-  transition: 120ms ease-out;
+  box-shadow: 0 0 8px -2px rgb(60 60 30 / .5);
+  transition: all 120ms ease-out;
 }
 
 .login-submit {
