@@ -411,6 +411,30 @@ header.listings-title {
   max-width: 80em;
 }
 
+.toggle-container input[type='checkbox'] {
+  aspect-ratio: 1;
+  position: relative;
+  width: 1.1%;
+  appearance: none;
+  background: var(--input-bg);
+  border-radius: .15rem;
+  box-shadow: inset 0 0 .15rem rgb(60 60 60 / .2);
+  margin: 0;
+  transform: translateY(.075rem);
+  transition: background 120ms ease-in;
+}
+
+.toggle-container input[type='checkbox']:checked {
+  box-shadow: inset 0 0 .15rem rgb(60 60 60 / 0);
+  background: var(--type);
+}
+  #toggle-trade {
+    --type: var(--flr-trd);
+  }
+  #toggle-other {
+    --type: var(--flr-str);
+  }
+
 /* .toggle-container input {
   display: none;
 }
