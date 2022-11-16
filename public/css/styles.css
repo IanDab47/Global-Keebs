@@ -488,7 +488,7 @@ nav > .listing-container {
 }
 
 .listing-header h1:hover {
-  -webkit-line-clamp: 99;
+  -webkit-line-clamp: initial;
   max-height: none;
 }
 
@@ -500,8 +500,6 @@ nav > .listing-container {
 .listing-information {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
-  /* gap: 10px; */
   max-width: 33%;
   background: linear-gradient(
     270deg,
@@ -514,9 +512,7 @@ nav > .listing-container {
   color: var(--bg-lig-2);
   text-align: right;
   padding: 80px;
-  /* padding-left: 240px; */
   margin: -80px;
-  /* margin-left: -240px; */
 }
 
 .listing-information .selling-flair::before,
@@ -666,10 +662,16 @@ nav > .listing-container {
   background: var(--bg-lig-2);
   font-family: lato;
   font-size: 1em; font-weight: 400;
-  box-shadow: 0 0 12px rgb(90 90 60 / .1);
   border: none;
+  box-shadow: 0 0 12px rgb(90 90 60 / 0);
   outline: none;
   padding: 0 10px;
+
+  transition: box-shadow 300ms ease-in;
+}
+
+.comment-input:focus-within {
+  box-shadow: 0 0 12px rgb(90 90 60 / .1);
 }
 
 .message-btn {
