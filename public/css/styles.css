@@ -309,6 +309,7 @@ nav > .listing-container {
   margin-top: -1.5em;
   font-size: 2.5em;
   user-select: none;
+  pointer-events: none;
 }
 
 .landing-container p:first-of-type {
@@ -333,7 +334,8 @@ nav > .listing-container {
   background-color: var(--btn-bg);
   font-family: 'montserrat alternates';
   font-size: .5em; font-style: italic;
-  color: var(--bg-lig-2)
+  color: var(--bg-lig-2);
+  pointer-events: initial;
 }
 
 .fade-in {
