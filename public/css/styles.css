@@ -711,7 +711,7 @@ nav > .listing-container {
 }
 
 .login-content *:not(.user-entry) {
-  user-select: none;
+  caret-color: transparent;
 }
 
 .login-information {
