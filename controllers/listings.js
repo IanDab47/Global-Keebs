@@ -8,6 +8,13 @@ const { sequelize } = require('../models')
 const db = require('../models')
 
 const typeArr = ['selling', 'buying', 'store']
+const tmbs = [
+  '/imgs/filler/iron180.jpg',
+  '/imgs/filler/space65.jpg',
+  '/imgs/filler/suit.jpg',
+  '/imgs/filler/switches.jpg',
+  '/imgs/filler/thera.jpg',
+]
 
 // load listings page
 router.get('/', async (req, res) => {
@@ -112,6 +119,7 @@ router.get('/', async (req, res) => {
 router.get('/:page_id', async (req, res) => {
   try {
     let favorite = null
+    let thumbnails = []
     const message = req.query.message || null
     const user = res.locals.user
     const listing = await db.listing.findOne({
@@ -119,6 +127,14 @@ router.get('/:page_id', async (req, res) => {
         page_id: req.params.page_id
       }
     })
+    if(listing.timestamp) {
+      for(let i = 0; i < listing.created_utc % 5 + 1; i++) {
+        const rndArrPos = Math.floor(Math.random() * listing.created_utc % (5 - thumbnails.length))
+
+        thumbnails.push(tmbs[rndArrPos])
+      }
+    }
+    
     const comments = await db.comment.findAll({
       where: {
         listingId: listing.id
@@ -139,6 +155,7 @@ router.get('/:page_id', async (req, res) => {
       message: message,
       errorMsg: null,
       listing,
+      thumbnails,
       user,
       favorite,
       comments

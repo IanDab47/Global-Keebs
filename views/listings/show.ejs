@@ -50,6 +50,12 @@
       <div class="timestamp-link">
         <a href="<%= listing.timestamp %>" target="_blank">[TIMESTAMP]</a>
       </div>
+
+      <div>
+        <% thumbnails.map((img, i) => { %>
+          <img src='<%= img %>'alt='keeb_pic_<%= i + 1 %>'/>
+        <% }) %>
+      </div>
     </section>
   <% } %>
 
