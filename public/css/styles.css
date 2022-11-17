@@ -587,6 +587,9 @@ header.listings-title {
 
 .timestamp-display {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  caret-color: transparent;
   width: 100vw;
   padding: 60px;
 }
@@ -611,8 +614,15 @@ header.listings-title {
   opacity: 20%;
 }
 
-.timestamp-display img {
+.timestamp-display div:last-child {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  margin-top: 2.4rem;
+}
+
+.timestamp-display img {
   object-fit: cover;
   max-width: 30rem;
 }
