@@ -51,9 +51,12 @@
         <a href="<%= listing.timestamp %>" target="_blank">[TIMESTAMP]</a>
       </div>
 
-      <div>
+      <div style='--total: <%= thumbnails.length > 3 ? 3 : thumbnails.length %>;'>
         <% thumbnails.map((img, i) => { %>
-          <img src='<%= img %>'alt='keeb_pic_<%= i + 1 %>'/>
+          <img 
+            src='<%= img %>'
+            alt='keeb_pic_<%= i + 1 %>' 
+          />
         <% }) %>
       </div>
     </section>

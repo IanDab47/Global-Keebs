@@ -616,15 +616,19 @@ header.listings-title {
 
 .timestamp-display div:last-child {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(32%, 1fr));
+  grid-auto-flow: dense;
+  place-content: center;
   gap: 1rem;
   width: 100%;
   margin-top: 2.4rem;
 }
 
 .timestamp-display img {
+  aspect-ratio: 16/9;
+  width: 100%;
   object-fit: cover;
-  max-width: 30rem;
+  object-position: center;
 }
 
 .selftext-display {
