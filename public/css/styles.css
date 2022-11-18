@@ -617,9 +617,9 @@ header.listings-title {
 .timestamp-display div:last-child {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(32%, 1fr));
-  grid-auto-flow: dense;
+  /* grid-auto-flow: dense; */
   place-content: center;
-  gap: 1rem;
+  gap: .5rem;
   width: 100%;
   margin-top: 2.4rem;
 }
@@ -627,9 +627,26 @@ header.listings-title {
 .timestamp-display img {
   aspect-ratio: 16/9;
   width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
+  padding: .5rem;
 }
+  .timestamp-display img:first-of-type {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .timestamp-display img:nth-of-type(3) {
+    grid-column: 3;
+  }
+  .timestamp-display img:nth-of-type(4) {
+    grid-column: 1;
+    grid-row: span 2;
+  }
+  .timestamp-display img:nth-of-type(5) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
 
 .selftext-display {
   display: flex;
