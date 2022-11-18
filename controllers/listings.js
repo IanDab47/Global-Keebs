@@ -128,10 +128,12 @@ router.get('/:page_id', async (req, res) => {
       }
     })
     if(listing.timestamp) {
-      for(let i = 0; i < listing.created_utc % 5 + 1; i++) {
-        const rndArrPos = Math.floor(Math.random() * listing.created_utc % (5 - thumbnails.length))
-
-        thumbnails.push(tmbs[rndArrPos])
+      // Continuously loop through an amount of images based on static key
+      while(thumbnails.length <= listing.created_utc % 5) {
+        // Generate random number between 1 <==> 5
+        const rndArrPos = Math.ceil(Math.random() * 5) % 5
+        // Check if img is inside array. Add if not included
+        thumbnails.includes(tmbs[rndArrPos]) ? null : thumbnails.push(tmbs[rndArrPos]) 
       }
     }
     
